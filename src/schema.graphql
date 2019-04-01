@@ -7,6 +7,7 @@ type User {
   likes: [Like!]!
   comments: [Comment!]!
 }
+
 type Post {
   id: ID!
   title: String!
@@ -31,6 +32,7 @@ type Comment {
   user: User
   post: Post
 }
+
 type File {
   id: ID!
   url: String!
@@ -52,4 +54,8 @@ type Card {
   phoneNumber: String
   park: String
   info: String
+}
+
+type Query {
+  seeUser(id: String!): User!
 }

@@ -14,6 +14,11 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
 
 export interface Exists {
+  card: (where?: CardWhereInput) => Promise<boolean>;
+  comment: (where?: CommentWhereInput) => Promise<boolean>;
+  file: (where?: FileWhereInput) => Promise<boolean>;
+  like: (where?: LikeWhereInput) => Promise<boolean>;
+  post: (where?: PostWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
 }
 
@@ -36,6 +41,121 @@ export interface Prisma {
    * Queries
    */
 
+  card: (where: CardWhereUniqueInput) => CardPromise;
+  cards: (
+    args?: {
+      where?: CardWhereInput;
+      orderBy?: CardOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Card>;
+  cardsConnection: (
+    args?: {
+      where?: CardWhereInput;
+      orderBy?: CardOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => CardConnectionPromise;
+  comment: (where: CommentWhereUniqueInput) => CommentPromise;
+  comments: (
+    args?: {
+      where?: CommentWhereInput;
+      orderBy?: CommentOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Comment>;
+  commentsConnection: (
+    args?: {
+      where?: CommentWhereInput;
+      orderBy?: CommentOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => CommentConnectionPromise;
+  file: (where: FileWhereUniqueInput) => FilePromise;
+  files: (
+    args?: {
+      where?: FileWhereInput;
+      orderBy?: FileOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<File>;
+  filesConnection: (
+    args?: {
+      where?: FileWhereInput;
+      orderBy?: FileOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FileConnectionPromise;
+  like: (where: LikeWhereUniqueInput) => LikePromise;
+  likes: (
+    args?: {
+      where?: LikeWhereInput;
+      orderBy?: LikeOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Like>;
+  likesConnection: (
+    args?: {
+      where?: LikeWhereInput;
+      orderBy?: LikeOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => LikeConnectionPromise;
+  post: (where: PostWhereUniqueInput) => PostPromise;
+  posts: (
+    args?: {
+      where?: PostWhereInput;
+      orderBy?: PostOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Post>;
+  postsConnection: (
+    args?: {
+      where?: PostWhereInput;
+      orderBy?: PostOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => PostConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserPromise;
   users: (
     args?: {
@@ -65,6 +185,83 @@ export interface Prisma {
    * Mutations
    */
 
+  createCard: (data: CardCreateInput) => CardPromise;
+  updateCard: (
+    args: { data: CardUpdateInput; where: CardWhereUniqueInput }
+  ) => CardPromise;
+  updateManyCards: (
+    args: { data: CardUpdateManyMutationInput; where?: CardWhereInput }
+  ) => BatchPayloadPromise;
+  upsertCard: (
+    args: {
+      where: CardWhereUniqueInput;
+      create: CardCreateInput;
+      update: CardUpdateInput;
+    }
+  ) => CardPromise;
+  deleteCard: (where: CardWhereUniqueInput) => CardPromise;
+  deleteManyCards: (where?: CardWhereInput) => BatchPayloadPromise;
+  createComment: (data: CommentCreateInput) => CommentPromise;
+  updateComment: (
+    args: { data: CommentUpdateInput; where: CommentWhereUniqueInput }
+  ) => CommentPromise;
+  updateManyComments: (
+    args: { data: CommentUpdateManyMutationInput; where?: CommentWhereInput }
+  ) => BatchPayloadPromise;
+  upsertComment: (
+    args: {
+      where: CommentWhereUniqueInput;
+      create: CommentCreateInput;
+      update: CommentUpdateInput;
+    }
+  ) => CommentPromise;
+  deleteComment: (where: CommentWhereUniqueInput) => CommentPromise;
+  deleteManyComments: (where?: CommentWhereInput) => BatchPayloadPromise;
+  createFile: (data: FileCreateInput) => FilePromise;
+  updateFile: (
+    args: { data: FileUpdateInput; where: FileWhereUniqueInput }
+  ) => FilePromise;
+  updateManyFiles: (
+    args: { data: FileUpdateManyMutationInput; where?: FileWhereInput }
+  ) => BatchPayloadPromise;
+  upsertFile: (
+    args: {
+      where: FileWhereUniqueInput;
+      create: FileCreateInput;
+      update: FileUpdateInput;
+    }
+  ) => FilePromise;
+  deleteFile: (where: FileWhereUniqueInput) => FilePromise;
+  deleteManyFiles: (where?: FileWhereInput) => BatchPayloadPromise;
+  createLike: (data: LikeCreateInput) => LikePromise;
+  updateLike: (
+    args: { data: LikeUpdateInput; where: LikeWhereUniqueInput }
+  ) => LikePromise;
+  upsertLike: (
+    args: {
+      where: LikeWhereUniqueInput;
+      create: LikeCreateInput;
+      update: LikeUpdateInput;
+    }
+  ) => LikePromise;
+  deleteLike: (where: LikeWhereUniqueInput) => LikePromise;
+  deleteManyLikes: (where?: LikeWhereInput) => BatchPayloadPromise;
+  createPost: (data: PostCreateInput) => PostPromise;
+  updatePost: (
+    args: { data: PostUpdateInput; where: PostWhereUniqueInput }
+  ) => PostPromise;
+  updateManyPosts: (
+    args: { data: PostUpdateManyMutationInput; where?: PostWhereInput }
+  ) => BatchPayloadPromise;
+  upsertPost: (
+    args: {
+      where: PostWhereUniqueInput;
+      create: PostCreateInput;
+      update: PostUpdateInput;
+    }
+  ) => PostPromise;
+  deletePost: (where: PostWhereUniqueInput) => PostPromise;
+  deleteManyPosts: (where?: PostWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (
     args: { data: UserUpdateInput; where: UserWhereUniqueInput }
@@ -90,6 +287,21 @@ export interface Prisma {
 }
 
 export interface Subscription {
+  card: (
+    where?: CardSubscriptionWhereInput
+  ) => CardSubscriptionPayloadSubscription;
+  comment: (
+    where?: CommentSubscriptionWhereInput
+  ) => CommentSubscriptionPayloadSubscription;
+  file: (
+    where?: FileSubscriptionWhereInput
+  ) => FileSubscriptionPayloadSubscription;
+  like: (
+    where?: LikeSubscriptionWhereInput
+  ) => LikeSubscriptionPayloadSubscription;
+  post: (
+    where?: PostSubscriptionWhereInput
+  ) => PostSubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
@@ -103,11 +315,87 @@ export interface ClientConstructor<T> {
  * Types
  */
 
+export type FileOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "url_ASC"
+  | "url_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type CardOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "title_ASC"
+  | "title_DESC"
+  | "subTitle_ASC"
+  | "subTitle_DESC"
+  | "location_ASC"
+  | "location_DESC"
+  | "day_ASC"
+  | "day_DESC"
+  | "time_ASC"
+  | "time_DESC"
+  | "cost_ASC"
+  | "cost_DESC"
+  | "schedule_ASC"
+  | "schedule_DESC"
+  | "homepage_ASC"
+  | "homepage_DESC"
+  | "phoneNumber_ASC"
+  | "phoneNumber_DESC"
+  | "park_ASC"
+  | "park_DESC"
+  | "info_ASC"
+  | "info_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type PostOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "title_ASC"
+  | "title_DESC"
+  | "subTitle_ASC"
+  | "subTitle_DESC"
+  | "isLiked_ASC"
+  | "isLiked_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type LikeOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type CommentOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "text_ASC"
+  | "text_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "profilePhoto_ASC"
+  | "profilePhoto_DESC"
   | "name_ASC"
   | "name_DESC"
+  | "account_ASC"
+  | "account_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -115,9 +403,285 @@ export type UserOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export type UserWhereUniqueInput = AtLeastOne<{
+export type CardWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
+
+export interface FileWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  url?: String;
+  url_not?: String;
+  url_in?: String[] | String;
+  url_not_in?: String[] | String;
+  url_lt?: String;
+  url_lte?: String;
+  url_gt?: String;
+  url_gte?: String;
+  url_contains?: String;
+  url_not_contains?: String;
+  url_starts_with?: String;
+  url_not_starts_with?: String;
+  url_ends_with?: String;
+  url_not_ends_with?: String;
+  card?: CardWhereInput;
+  AND?: FileWhereInput[] | FileWhereInput;
+  OR?: FileWhereInput[] | FileWhereInput;
+  NOT?: FileWhereInput[] | FileWhereInput;
+}
+
+export interface CardWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  files_every?: FileWhereInput;
+  files_some?: FileWhereInput;
+  files_none?: FileWhereInput;
+  title?: String;
+  title_not?: String;
+  title_in?: String[] | String;
+  title_not_in?: String[] | String;
+  title_lt?: String;
+  title_lte?: String;
+  title_gt?: String;
+  title_gte?: String;
+  title_contains?: String;
+  title_not_contains?: String;
+  title_starts_with?: String;
+  title_not_starts_with?: String;
+  title_ends_with?: String;
+  title_not_ends_with?: String;
+  subTitle?: String;
+  subTitle_not?: String;
+  subTitle_in?: String[] | String;
+  subTitle_not_in?: String[] | String;
+  subTitle_lt?: String;
+  subTitle_lte?: String;
+  subTitle_gt?: String;
+  subTitle_gte?: String;
+  subTitle_contains?: String;
+  subTitle_not_contains?: String;
+  subTitle_starts_with?: String;
+  subTitle_not_starts_with?: String;
+  subTitle_ends_with?: String;
+  subTitle_not_ends_with?: String;
+  location?: String;
+  location_not?: String;
+  location_in?: String[] | String;
+  location_not_in?: String[] | String;
+  location_lt?: String;
+  location_lte?: String;
+  location_gt?: String;
+  location_gte?: String;
+  location_contains?: String;
+  location_not_contains?: String;
+  location_starts_with?: String;
+  location_not_starts_with?: String;
+  location_ends_with?: String;
+  location_not_ends_with?: String;
+  day?: String;
+  day_not?: String;
+  day_in?: String[] | String;
+  day_not_in?: String[] | String;
+  day_lt?: String;
+  day_lte?: String;
+  day_gt?: String;
+  day_gte?: String;
+  day_contains?: String;
+  day_not_contains?: String;
+  day_starts_with?: String;
+  day_not_starts_with?: String;
+  day_ends_with?: String;
+  day_not_ends_with?: String;
+  time?: String;
+  time_not?: String;
+  time_in?: String[] | String;
+  time_not_in?: String[] | String;
+  time_lt?: String;
+  time_lte?: String;
+  time_gt?: String;
+  time_gte?: String;
+  time_contains?: String;
+  time_not_contains?: String;
+  time_starts_with?: String;
+  time_not_starts_with?: String;
+  time_ends_with?: String;
+  time_not_ends_with?: String;
+  cost?: String;
+  cost_not?: String;
+  cost_in?: String[] | String;
+  cost_not_in?: String[] | String;
+  cost_lt?: String;
+  cost_lte?: String;
+  cost_gt?: String;
+  cost_gte?: String;
+  cost_contains?: String;
+  cost_not_contains?: String;
+  cost_starts_with?: String;
+  cost_not_starts_with?: String;
+  cost_ends_with?: String;
+  cost_not_ends_with?: String;
+  schedule?: String;
+  schedule_not?: String;
+  schedule_in?: String[] | String;
+  schedule_not_in?: String[] | String;
+  schedule_lt?: String;
+  schedule_lte?: String;
+  schedule_gt?: String;
+  schedule_gte?: String;
+  schedule_contains?: String;
+  schedule_not_contains?: String;
+  schedule_starts_with?: String;
+  schedule_not_starts_with?: String;
+  schedule_ends_with?: String;
+  schedule_not_ends_with?: String;
+  homepage?: String;
+  homepage_not?: String;
+  homepage_in?: String[] | String;
+  homepage_not_in?: String[] | String;
+  homepage_lt?: String;
+  homepage_lte?: String;
+  homepage_gt?: String;
+  homepage_gte?: String;
+  homepage_contains?: String;
+  homepage_not_contains?: String;
+  homepage_starts_with?: String;
+  homepage_not_starts_with?: String;
+  homepage_ends_with?: String;
+  homepage_not_ends_with?: String;
+  phoneNumber?: String;
+  phoneNumber_not?: String;
+  phoneNumber_in?: String[] | String;
+  phoneNumber_not_in?: String[] | String;
+  phoneNumber_lt?: String;
+  phoneNumber_lte?: String;
+  phoneNumber_gt?: String;
+  phoneNumber_gte?: String;
+  phoneNumber_contains?: String;
+  phoneNumber_not_contains?: String;
+  phoneNumber_starts_with?: String;
+  phoneNumber_not_starts_with?: String;
+  phoneNumber_ends_with?: String;
+  phoneNumber_not_ends_with?: String;
+  park?: String;
+  park_not?: String;
+  park_in?: String[] | String;
+  park_not_in?: String[] | String;
+  park_lt?: String;
+  park_lte?: String;
+  park_gt?: String;
+  park_gte?: String;
+  park_contains?: String;
+  park_not_contains?: String;
+  park_starts_with?: String;
+  park_not_starts_with?: String;
+  park_ends_with?: String;
+  park_not_ends_with?: String;
+  info?: String;
+  info_not?: String;
+  info_in?: String[] | String;
+  info_not_in?: String[] | String;
+  info_lt?: String;
+  info_lte?: String;
+  info_gt?: String;
+  info_gte?: String;
+  info_contains?: String;
+  info_not_contains?: String;
+  info_starts_with?: String;
+  info_not_starts_with?: String;
+  info_ends_with?: String;
+  info_not_ends_with?: String;
+  AND?: CardWhereInput[] | CardWhereInput;
+  OR?: CardWhereInput[] | CardWhereInput;
+  NOT?: CardWhereInput[] | CardWhereInput;
+}
+
+export type CommentWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface PostWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  title?: String;
+  title_not?: String;
+  title_in?: String[] | String;
+  title_not_in?: String[] | String;
+  title_lt?: String;
+  title_lte?: String;
+  title_gt?: String;
+  title_gte?: String;
+  title_contains?: String;
+  title_not_contains?: String;
+  title_starts_with?: String;
+  title_not_starts_with?: String;
+  title_ends_with?: String;
+  title_not_ends_with?: String;
+  subTitle?: String;
+  subTitle_not?: String;
+  subTitle_in?: String[] | String;
+  subTitle_not_in?: String[] | String;
+  subTitle_lt?: String;
+  subTitle_lte?: String;
+  subTitle_gt?: String;
+  subTitle_gte?: String;
+  subTitle_contains?: String;
+  subTitle_not_contains?: String;
+  subTitle_starts_with?: String;
+  subTitle_not_starts_with?: String;
+  subTitle_ends_with?: String;
+  subTitle_not_ends_with?: String;
+  user?: UserWhereInput;
+  cards_every?: CardWhereInput;
+  cards_some?: CardWhereInput;
+  cards_none?: CardWhereInput;
+  likes_every?: LikeWhereInput;
+  likes_some?: LikeWhereInput;
+  likes_none?: LikeWhereInput;
+  comments_every?: CommentWhereInput;
+  comments_some?: CommentWhereInput;
+  comments_none?: CommentWhereInput;
+  isLiked?: Boolean;
+  isLiked_not?: Boolean;
+  AND?: PostWhereInput[] | PostWhereInput;
+  OR?: PostWhereInput[] | PostWhereInput;
+  NOT?: PostWhereInput[] | PostWhereInput;
+}
 
 export interface UserWhereInput {
   id?: ID_Input;
@@ -134,6 +698,20 @@ export interface UserWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  profilePhoto?: String;
+  profilePhoto_not?: String;
+  profilePhoto_in?: String[] | String;
+  profilePhoto_not_in?: String[] | String;
+  profilePhoto_lt?: String;
+  profilePhoto_lte?: String;
+  profilePhoto_gt?: String;
+  profilePhoto_gte?: String;
+  profilePhoto_contains?: String;
+  profilePhoto_not_contains?: String;
+  profilePhoto_starts_with?: String;
+  profilePhoto_not_starts_with?: String;
+  profilePhoto_ends_with?: String;
+  profilePhoto_not_ends_with?: String;
   name?: String;
   name_not?: String;
   name_in?: String[] | String;
@@ -148,21 +726,1223 @@ export interface UserWhereInput {
   name_not_starts_with?: String;
   name_ends_with?: String;
   name_not_ends_with?: String;
+  account?: String;
+  account_not?: String;
+  account_in?: String[] | String;
+  account_not_in?: String[] | String;
+  account_lt?: String;
+  account_lte?: String;
+  account_gt?: String;
+  account_gte?: String;
+  account_contains?: String;
+  account_not_contains?: String;
+  account_starts_with?: String;
+  account_not_starts_with?: String;
+  account_ends_with?: String;
+  account_not_ends_with?: String;
+  posts_every?: PostWhereInput;
+  posts_some?: PostWhereInput;
+  posts_none?: PostWhereInput;
+  likes_every?: LikeWhereInput;
+  likes_some?: LikeWhereInput;
+  likes_none?: LikeWhereInput;
+  comments_every?: CommentWhereInput;
+  comments_some?: CommentWhereInput;
+  comments_none?: CommentWhereInput;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
   NOT?: UserWhereInput[] | UserWhereInput;
 }
 
-export interface UserCreateInput {
+export interface LikeWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  user?: UserWhereInput;
+  post?: PostWhereInput;
+  AND?: LikeWhereInput[] | LikeWhereInput;
+  OR?: LikeWhereInput[] | LikeWhereInput;
+  NOT?: LikeWhereInput[] | LikeWhereInput;
+}
+
+export interface CommentWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  text?: String;
+  text_not?: String;
+  text_in?: String[] | String;
+  text_not_in?: String[] | String;
+  text_lt?: String;
+  text_lte?: String;
+  text_gt?: String;
+  text_gte?: String;
+  text_contains?: String;
+  text_not_contains?: String;
+  text_starts_with?: String;
+  text_not_starts_with?: String;
+  text_ends_with?: String;
+  text_not_ends_with?: String;
+  user?: UserWhereInput;
+  post?: PostWhereInput;
+  AND?: CommentWhereInput[] | CommentWhereInput;
+  OR?: CommentWhereInput[] | CommentWhereInput;
+  NOT?: CommentWhereInput[] | CommentWhereInput;
+}
+
+export type FileWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export type LikeWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export type PostWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface CardCreateInput {
+  files?: FileCreateManyWithoutCardInput;
+  title: String;
+  subTitle: String;
+  location?: String;
+  contents?: CardCreatecontentsInput;
+  day?: String;
+  time?: String;
+  cost?: String;
+  schedule?: String;
+  homepage?: String;
+  phoneNumber?: String;
+  park?: String;
+  info?: String;
+}
+
+export interface FileCreateManyWithoutCardInput {
+  create?: FileCreateWithoutCardInput[] | FileCreateWithoutCardInput;
+  connect?: FileWhereUniqueInput[] | FileWhereUniqueInput;
+}
+
+export interface FileCreateWithoutCardInput {
+  url: String;
+}
+
+export interface CardCreatecontentsInput {
+  set?: String[] | String;
+}
+
+export interface CardUpdateInput {
+  files?: FileUpdateManyWithoutCardInput;
+  title?: String;
+  subTitle?: String;
+  location?: String;
+  contents?: CardUpdatecontentsInput;
+  day?: String;
+  time?: String;
+  cost?: String;
+  schedule?: String;
+  homepage?: String;
+  phoneNumber?: String;
+  park?: String;
+  info?: String;
+}
+
+export interface FileUpdateManyWithoutCardInput {
+  create?: FileCreateWithoutCardInput[] | FileCreateWithoutCardInput;
+  delete?: FileWhereUniqueInput[] | FileWhereUniqueInput;
+  connect?: FileWhereUniqueInput[] | FileWhereUniqueInput;
+  set?: FileWhereUniqueInput[] | FileWhereUniqueInput;
+  disconnect?: FileWhereUniqueInput[] | FileWhereUniqueInput;
+  update?:
+    | FileUpdateWithWhereUniqueWithoutCardInput[]
+    | FileUpdateWithWhereUniqueWithoutCardInput;
+  upsert?:
+    | FileUpsertWithWhereUniqueWithoutCardInput[]
+    | FileUpsertWithWhereUniqueWithoutCardInput;
+  deleteMany?: FileScalarWhereInput[] | FileScalarWhereInput;
+  updateMany?:
+    | FileUpdateManyWithWhereNestedInput[]
+    | FileUpdateManyWithWhereNestedInput;
+}
+
+export interface FileUpdateWithWhereUniqueWithoutCardInput {
+  where: FileWhereUniqueInput;
+  data: FileUpdateWithoutCardDataInput;
+}
+
+export interface FileUpdateWithoutCardDataInput {
+  url?: String;
+}
+
+export interface FileUpsertWithWhereUniqueWithoutCardInput {
+  where: FileWhereUniqueInput;
+  update: FileUpdateWithoutCardDataInput;
+  create: FileCreateWithoutCardInput;
+}
+
+export interface FileScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  url?: String;
+  url_not?: String;
+  url_in?: String[] | String;
+  url_not_in?: String[] | String;
+  url_lt?: String;
+  url_lte?: String;
+  url_gt?: String;
+  url_gte?: String;
+  url_contains?: String;
+  url_not_contains?: String;
+  url_starts_with?: String;
+  url_not_starts_with?: String;
+  url_ends_with?: String;
+  url_not_ends_with?: String;
+  AND?: FileScalarWhereInput[] | FileScalarWhereInput;
+  OR?: FileScalarWhereInput[] | FileScalarWhereInput;
+  NOT?: FileScalarWhereInput[] | FileScalarWhereInput;
+}
+
+export interface FileUpdateManyWithWhereNestedInput {
+  where: FileScalarWhereInput;
+  data: FileUpdateManyDataInput;
+}
+
+export interface FileUpdateManyDataInput {
+  url?: String;
+}
+
+export interface CardUpdatecontentsInput {
+  set?: String[] | String;
+}
+
+export interface CardUpdateManyMutationInput {
+  title?: String;
+  subTitle?: String;
+  location?: String;
+  contents?: CardUpdatecontentsInput;
+  day?: String;
+  time?: String;
+  cost?: String;
+  schedule?: String;
+  homepage?: String;
+  phoneNumber?: String;
+  park?: String;
+  info?: String;
+}
+
+export interface CommentCreateInput {
+  text: String;
+  user?: UserCreateOneWithoutCommentsInput;
+  post?: PostCreateOneWithoutCommentsInput;
+}
+
+export interface UserCreateOneWithoutCommentsInput {
+  create?: UserCreateWithoutCommentsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserCreateWithoutCommentsInput {
+  profilePhoto: String;
   name: String;
+  account: String;
+  posts?: PostCreateManyWithoutUserInput;
+  likes?: LikeCreateManyWithoutUserInput;
+}
+
+export interface PostCreateManyWithoutUserInput {
+  create?: PostCreateWithoutUserInput[] | PostCreateWithoutUserInput;
+  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
+}
+
+export interface PostCreateWithoutUserInput {
+  title: String;
+  subTitle: String;
+  cards?: CardCreateManyInput;
+  likes?: LikeCreateManyWithoutPostInput;
+  comments?: CommentCreateManyWithoutPostInput;
+  isLiked?: Boolean;
+  hashTags?: PostCreatehashTagsInput;
+}
+
+export interface CardCreateManyInput {
+  create?: CardCreateInput[] | CardCreateInput;
+  connect?: CardWhereUniqueInput[] | CardWhereUniqueInput;
+}
+
+export interface LikeCreateManyWithoutPostInput {
+  create?: LikeCreateWithoutPostInput[] | LikeCreateWithoutPostInput;
+  connect?: LikeWhereUniqueInput[] | LikeWhereUniqueInput;
+}
+
+export interface LikeCreateWithoutPostInput {
+  user?: UserCreateOneWithoutLikesInput;
+}
+
+export interface UserCreateOneWithoutLikesInput {
+  create?: UserCreateWithoutLikesInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserCreateWithoutLikesInput {
+  profilePhoto: String;
+  name: String;
+  account: String;
+  posts?: PostCreateManyWithoutUserInput;
+  comments?: CommentCreateManyWithoutUserInput;
+}
+
+export interface CommentCreateManyWithoutUserInput {
+  create?: CommentCreateWithoutUserInput[] | CommentCreateWithoutUserInput;
+  connect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+}
+
+export interface CommentCreateWithoutUserInput {
+  text: String;
+  post?: PostCreateOneWithoutCommentsInput;
+}
+
+export interface PostCreateOneWithoutCommentsInput {
+  create?: PostCreateWithoutCommentsInput;
+  connect?: PostWhereUniqueInput;
+}
+
+export interface PostCreateWithoutCommentsInput {
+  title: String;
+  subTitle: String;
+  user?: UserCreateOneWithoutPostsInput;
+  cards?: CardCreateManyInput;
+  likes?: LikeCreateManyWithoutPostInput;
+  isLiked?: Boolean;
+  hashTags?: PostCreatehashTagsInput;
+}
+
+export interface UserCreateOneWithoutPostsInput {
+  create?: UserCreateWithoutPostsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserCreateWithoutPostsInput {
+  profilePhoto: String;
+  name: String;
+  account: String;
+  likes?: LikeCreateManyWithoutUserInput;
+  comments?: CommentCreateManyWithoutUserInput;
+}
+
+export interface LikeCreateManyWithoutUserInput {
+  create?: LikeCreateWithoutUserInput[] | LikeCreateWithoutUserInput;
+  connect?: LikeWhereUniqueInput[] | LikeWhereUniqueInput;
+}
+
+export interface LikeCreateWithoutUserInput {
+  post?: PostCreateOneWithoutLikesInput;
+}
+
+export interface PostCreateOneWithoutLikesInput {
+  create?: PostCreateWithoutLikesInput;
+  connect?: PostWhereUniqueInput;
+}
+
+export interface PostCreateWithoutLikesInput {
+  title: String;
+  subTitle: String;
+  user?: UserCreateOneWithoutPostsInput;
+  cards?: CardCreateManyInput;
+  comments?: CommentCreateManyWithoutPostInput;
+  isLiked?: Boolean;
+  hashTags?: PostCreatehashTagsInput;
+}
+
+export interface CommentCreateManyWithoutPostInput {
+  create?: CommentCreateWithoutPostInput[] | CommentCreateWithoutPostInput;
+  connect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+}
+
+export interface CommentCreateWithoutPostInput {
+  text: String;
+  user?: UserCreateOneWithoutCommentsInput;
+}
+
+export interface PostCreatehashTagsInput {
+  set?: String[] | String;
+}
+
+export interface CommentUpdateInput {
+  text?: String;
+  user?: UserUpdateOneWithoutCommentsInput;
+  post?: PostUpdateOneWithoutCommentsInput;
+}
+
+export interface UserUpdateOneWithoutCommentsInput {
+  create?: UserCreateWithoutCommentsInput;
+  update?: UserUpdateWithoutCommentsDataInput;
+  upsert?: UserUpsertWithoutCommentsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpdateWithoutCommentsDataInput {
+  profilePhoto?: String;
+  name?: String;
+  account?: String;
+  posts?: PostUpdateManyWithoutUserInput;
+  likes?: LikeUpdateManyWithoutUserInput;
+}
+
+export interface PostUpdateManyWithoutUserInput {
+  create?: PostCreateWithoutUserInput[] | PostCreateWithoutUserInput;
+  delete?: PostWhereUniqueInput[] | PostWhereUniqueInput;
+  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
+  set?: PostWhereUniqueInput[] | PostWhereUniqueInput;
+  disconnect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
+  update?:
+    | PostUpdateWithWhereUniqueWithoutUserInput[]
+    | PostUpdateWithWhereUniqueWithoutUserInput;
+  upsert?:
+    | PostUpsertWithWhereUniqueWithoutUserInput[]
+    | PostUpsertWithWhereUniqueWithoutUserInput;
+  deleteMany?: PostScalarWhereInput[] | PostScalarWhereInput;
+  updateMany?:
+    | PostUpdateManyWithWhereNestedInput[]
+    | PostUpdateManyWithWhereNestedInput;
+}
+
+export interface PostUpdateWithWhereUniqueWithoutUserInput {
+  where: PostWhereUniqueInput;
+  data: PostUpdateWithoutUserDataInput;
+}
+
+export interface PostUpdateWithoutUserDataInput {
+  title?: String;
+  subTitle?: String;
+  cards?: CardUpdateManyInput;
+  likes?: LikeUpdateManyWithoutPostInput;
+  comments?: CommentUpdateManyWithoutPostInput;
+  isLiked?: Boolean;
+  hashTags?: PostUpdatehashTagsInput;
+}
+
+export interface CardUpdateManyInput {
+  create?: CardCreateInput[] | CardCreateInput;
+  update?:
+    | CardUpdateWithWhereUniqueNestedInput[]
+    | CardUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | CardUpsertWithWhereUniqueNestedInput[]
+    | CardUpsertWithWhereUniqueNestedInput;
+  delete?: CardWhereUniqueInput[] | CardWhereUniqueInput;
+  connect?: CardWhereUniqueInput[] | CardWhereUniqueInput;
+  set?: CardWhereUniqueInput[] | CardWhereUniqueInput;
+  disconnect?: CardWhereUniqueInput[] | CardWhereUniqueInput;
+  deleteMany?: CardScalarWhereInput[] | CardScalarWhereInput;
+  updateMany?:
+    | CardUpdateManyWithWhereNestedInput[]
+    | CardUpdateManyWithWhereNestedInput;
+}
+
+export interface CardUpdateWithWhereUniqueNestedInput {
+  where: CardWhereUniqueInput;
+  data: CardUpdateDataInput;
+}
+
+export interface CardUpdateDataInput {
+  files?: FileUpdateManyWithoutCardInput;
+  title?: String;
+  subTitle?: String;
+  location?: String;
+  contents?: CardUpdatecontentsInput;
+  day?: String;
+  time?: String;
+  cost?: String;
+  schedule?: String;
+  homepage?: String;
+  phoneNumber?: String;
+  park?: String;
+  info?: String;
+}
+
+export interface CardUpsertWithWhereUniqueNestedInput {
+  where: CardWhereUniqueInput;
+  update: CardUpdateDataInput;
+  create: CardCreateInput;
+}
+
+export interface CardScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  title?: String;
+  title_not?: String;
+  title_in?: String[] | String;
+  title_not_in?: String[] | String;
+  title_lt?: String;
+  title_lte?: String;
+  title_gt?: String;
+  title_gte?: String;
+  title_contains?: String;
+  title_not_contains?: String;
+  title_starts_with?: String;
+  title_not_starts_with?: String;
+  title_ends_with?: String;
+  title_not_ends_with?: String;
+  subTitle?: String;
+  subTitle_not?: String;
+  subTitle_in?: String[] | String;
+  subTitle_not_in?: String[] | String;
+  subTitle_lt?: String;
+  subTitle_lte?: String;
+  subTitle_gt?: String;
+  subTitle_gte?: String;
+  subTitle_contains?: String;
+  subTitle_not_contains?: String;
+  subTitle_starts_with?: String;
+  subTitle_not_starts_with?: String;
+  subTitle_ends_with?: String;
+  subTitle_not_ends_with?: String;
+  location?: String;
+  location_not?: String;
+  location_in?: String[] | String;
+  location_not_in?: String[] | String;
+  location_lt?: String;
+  location_lte?: String;
+  location_gt?: String;
+  location_gte?: String;
+  location_contains?: String;
+  location_not_contains?: String;
+  location_starts_with?: String;
+  location_not_starts_with?: String;
+  location_ends_with?: String;
+  location_not_ends_with?: String;
+  day?: String;
+  day_not?: String;
+  day_in?: String[] | String;
+  day_not_in?: String[] | String;
+  day_lt?: String;
+  day_lte?: String;
+  day_gt?: String;
+  day_gte?: String;
+  day_contains?: String;
+  day_not_contains?: String;
+  day_starts_with?: String;
+  day_not_starts_with?: String;
+  day_ends_with?: String;
+  day_not_ends_with?: String;
+  time?: String;
+  time_not?: String;
+  time_in?: String[] | String;
+  time_not_in?: String[] | String;
+  time_lt?: String;
+  time_lte?: String;
+  time_gt?: String;
+  time_gte?: String;
+  time_contains?: String;
+  time_not_contains?: String;
+  time_starts_with?: String;
+  time_not_starts_with?: String;
+  time_ends_with?: String;
+  time_not_ends_with?: String;
+  cost?: String;
+  cost_not?: String;
+  cost_in?: String[] | String;
+  cost_not_in?: String[] | String;
+  cost_lt?: String;
+  cost_lte?: String;
+  cost_gt?: String;
+  cost_gte?: String;
+  cost_contains?: String;
+  cost_not_contains?: String;
+  cost_starts_with?: String;
+  cost_not_starts_with?: String;
+  cost_ends_with?: String;
+  cost_not_ends_with?: String;
+  schedule?: String;
+  schedule_not?: String;
+  schedule_in?: String[] | String;
+  schedule_not_in?: String[] | String;
+  schedule_lt?: String;
+  schedule_lte?: String;
+  schedule_gt?: String;
+  schedule_gte?: String;
+  schedule_contains?: String;
+  schedule_not_contains?: String;
+  schedule_starts_with?: String;
+  schedule_not_starts_with?: String;
+  schedule_ends_with?: String;
+  schedule_not_ends_with?: String;
+  homepage?: String;
+  homepage_not?: String;
+  homepage_in?: String[] | String;
+  homepage_not_in?: String[] | String;
+  homepage_lt?: String;
+  homepage_lte?: String;
+  homepage_gt?: String;
+  homepage_gte?: String;
+  homepage_contains?: String;
+  homepage_not_contains?: String;
+  homepage_starts_with?: String;
+  homepage_not_starts_with?: String;
+  homepage_ends_with?: String;
+  homepage_not_ends_with?: String;
+  phoneNumber?: String;
+  phoneNumber_not?: String;
+  phoneNumber_in?: String[] | String;
+  phoneNumber_not_in?: String[] | String;
+  phoneNumber_lt?: String;
+  phoneNumber_lte?: String;
+  phoneNumber_gt?: String;
+  phoneNumber_gte?: String;
+  phoneNumber_contains?: String;
+  phoneNumber_not_contains?: String;
+  phoneNumber_starts_with?: String;
+  phoneNumber_not_starts_with?: String;
+  phoneNumber_ends_with?: String;
+  phoneNumber_not_ends_with?: String;
+  park?: String;
+  park_not?: String;
+  park_in?: String[] | String;
+  park_not_in?: String[] | String;
+  park_lt?: String;
+  park_lte?: String;
+  park_gt?: String;
+  park_gte?: String;
+  park_contains?: String;
+  park_not_contains?: String;
+  park_starts_with?: String;
+  park_not_starts_with?: String;
+  park_ends_with?: String;
+  park_not_ends_with?: String;
+  info?: String;
+  info_not?: String;
+  info_in?: String[] | String;
+  info_not_in?: String[] | String;
+  info_lt?: String;
+  info_lte?: String;
+  info_gt?: String;
+  info_gte?: String;
+  info_contains?: String;
+  info_not_contains?: String;
+  info_starts_with?: String;
+  info_not_starts_with?: String;
+  info_ends_with?: String;
+  info_not_ends_with?: String;
+  AND?: CardScalarWhereInput[] | CardScalarWhereInput;
+  OR?: CardScalarWhereInput[] | CardScalarWhereInput;
+  NOT?: CardScalarWhereInput[] | CardScalarWhereInput;
+}
+
+export interface CardUpdateManyWithWhereNestedInput {
+  where: CardScalarWhereInput;
+  data: CardUpdateManyDataInput;
+}
+
+export interface CardUpdateManyDataInput {
+  title?: String;
+  subTitle?: String;
+  location?: String;
+  contents?: CardUpdatecontentsInput;
+  day?: String;
+  time?: String;
+  cost?: String;
+  schedule?: String;
+  homepage?: String;
+  phoneNumber?: String;
+  park?: String;
+  info?: String;
+}
+
+export interface LikeUpdateManyWithoutPostInput {
+  create?: LikeCreateWithoutPostInput[] | LikeCreateWithoutPostInput;
+  delete?: LikeWhereUniqueInput[] | LikeWhereUniqueInput;
+  connect?: LikeWhereUniqueInput[] | LikeWhereUniqueInput;
+  set?: LikeWhereUniqueInput[] | LikeWhereUniqueInput;
+  disconnect?: LikeWhereUniqueInput[] | LikeWhereUniqueInput;
+  update?:
+    | LikeUpdateWithWhereUniqueWithoutPostInput[]
+    | LikeUpdateWithWhereUniqueWithoutPostInput;
+  upsert?:
+    | LikeUpsertWithWhereUniqueWithoutPostInput[]
+    | LikeUpsertWithWhereUniqueWithoutPostInput;
+  deleteMany?: LikeScalarWhereInput[] | LikeScalarWhereInput;
+}
+
+export interface LikeUpdateWithWhereUniqueWithoutPostInput {
+  where: LikeWhereUniqueInput;
+  data: LikeUpdateWithoutPostDataInput;
+}
+
+export interface LikeUpdateWithoutPostDataInput {
+  user?: UserUpdateOneWithoutLikesInput;
+}
+
+export interface UserUpdateOneWithoutLikesInput {
+  create?: UserCreateWithoutLikesInput;
+  update?: UserUpdateWithoutLikesDataInput;
+  upsert?: UserUpsertWithoutLikesInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpdateWithoutLikesDataInput {
+  profilePhoto?: String;
+  name?: String;
+  account?: String;
+  posts?: PostUpdateManyWithoutUserInput;
+  comments?: CommentUpdateManyWithoutUserInput;
+}
+
+export interface CommentUpdateManyWithoutUserInput {
+  create?: CommentCreateWithoutUserInput[] | CommentCreateWithoutUserInput;
+  delete?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+  connect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+  set?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+  disconnect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+  update?:
+    | CommentUpdateWithWhereUniqueWithoutUserInput[]
+    | CommentUpdateWithWhereUniqueWithoutUserInput;
+  upsert?:
+    | CommentUpsertWithWhereUniqueWithoutUserInput[]
+    | CommentUpsertWithWhereUniqueWithoutUserInput;
+  deleteMany?: CommentScalarWhereInput[] | CommentScalarWhereInput;
+  updateMany?:
+    | CommentUpdateManyWithWhereNestedInput[]
+    | CommentUpdateManyWithWhereNestedInput;
+}
+
+export interface CommentUpdateWithWhereUniqueWithoutUserInput {
+  where: CommentWhereUniqueInput;
+  data: CommentUpdateWithoutUserDataInput;
+}
+
+export interface CommentUpdateWithoutUserDataInput {
+  text?: String;
+  post?: PostUpdateOneWithoutCommentsInput;
+}
+
+export interface PostUpdateOneWithoutCommentsInput {
+  create?: PostCreateWithoutCommentsInput;
+  update?: PostUpdateWithoutCommentsDataInput;
+  upsert?: PostUpsertWithoutCommentsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: PostWhereUniqueInput;
+}
+
+export interface PostUpdateWithoutCommentsDataInput {
+  title?: String;
+  subTitle?: String;
+  user?: UserUpdateOneWithoutPostsInput;
+  cards?: CardUpdateManyInput;
+  likes?: LikeUpdateManyWithoutPostInput;
+  isLiked?: Boolean;
+  hashTags?: PostUpdatehashTagsInput;
+}
+
+export interface UserUpdateOneWithoutPostsInput {
+  create?: UserCreateWithoutPostsInput;
+  update?: UserUpdateWithoutPostsDataInput;
+  upsert?: UserUpsertWithoutPostsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpdateWithoutPostsDataInput {
+  profilePhoto?: String;
+  name?: String;
+  account?: String;
+  likes?: LikeUpdateManyWithoutUserInput;
+  comments?: CommentUpdateManyWithoutUserInput;
+}
+
+export interface LikeUpdateManyWithoutUserInput {
+  create?: LikeCreateWithoutUserInput[] | LikeCreateWithoutUserInput;
+  delete?: LikeWhereUniqueInput[] | LikeWhereUniqueInput;
+  connect?: LikeWhereUniqueInput[] | LikeWhereUniqueInput;
+  set?: LikeWhereUniqueInput[] | LikeWhereUniqueInput;
+  disconnect?: LikeWhereUniqueInput[] | LikeWhereUniqueInput;
+  update?:
+    | LikeUpdateWithWhereUniqueWithoutUserInput[]
+    | LikeUpdateWithWhereUniqueWithoutUserInput;
+  upsert?:
+    | LikeUpsertWithWhereUniqueWithoutUserInput[]
+    | LikeUpsertWithWhereUniqueWithoutUserInput;
+  deleteMany?: LikeScalarWhereInput[] | LikeScalarWhereInput;
+}
+
+export interface LikeUpdateWithWhereUniqueWithoutUserInput {
+  where: LikeWhereUniqueInput;
+  data: LikeUpdateWithoutUserDataInput;
+}
+
+export interface LikeUpdateWithoutUserDataInput {
+  post?: PostUpdateOneWithoutLikesInput;
+}
+
+export interface PostUpdateOneWithoutLikesInput {
+  create?: PostCreateWithoutLikesInput;
+  update?: PostUpdateWithoutLikesDataInput;
+  upsert?: PostUpsertWithoutLikesInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: PostWhereUniqueInput;
+}
+
+export interface PostUpdateWithoutLikesDataInput {
+  title?: String;
+  subTitle?: String;
+  user?: UserUpdateOneWithoutPostsInput;
+  cards?: CardUpdateManyInput;
+  comments?: CommentUpdateManyWithoutPostInput;
+  isLiked?: Boolean;
+  hashTags?: PostUpdatehashTagsInput;
+}
+
+export interface CommentUpdateManyWithoutPostInput {
+  create?: CommentCreateWithoutPostInput[] | CommentCreateWithoutPostInput;
+  delete?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+  connect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+  set?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+  disconnect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+  update?:
+    | CommentUpdateWithWhereUniqueWithoutPostInput[]
+    | CommentUpdateWithWhereUniqueWithoutPostInput;
+  upsert?:
+    | CommentUpsertWithWhereUniqueWithoutPostInput[]
+    | CommentUpsertWithWhereUniqueWithoutPostInput;
+  deleteMany?: CommentScalarWhereInput[] | CommentScalarWhereInput;
+  updateMany?:
+    | CommentUpdateManyWithWhereNestedInput[]
+    | CommentUpdateManyWithWhereNestedInput;
+}
+
+export interface CommentUpdateWithWhereUniqueWithoutPostInput {
+  where: CommentWhereUniqueInput;
+  data: CommentUpdateWithoutPostDataInput;
+}
+
+export interface CommentUpdateWithoutPostDataInput {
+  text?: String;
+  user?: UserUpdateOneWithoutCommentsInput;
+}
+
+export interface CommentUpsertWithWhereUniqueWithoutPostInput {
+  where: CommentWhereUniqueInput;
+  update: CommentUpdateWithoutPostDataInput;
+  create: CommentCreateWithoutPostInput;
+}
+
+export interface CommentScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  text?: String;
+  text_not?: String;
+  text_in?: String[] | String;
+  text_not_in?: String[] | String;
+  text_lt?: String;
+  text_lte?: String;
+  text_gt?: String;
+  text_gte?: String;
+  text_contains?: String;
+  text_not_contains?: String;
+  text_starts_with?: String;
+  text_not_starts_with?: String;
+  text_ends_with?: String;
+  text_not_ends_with?: String;
+  AND?: CommentScalarWhereInput[] | CommentScalarWhereInput;
+  OR?: CommentScalarWhereInput[] | CommentScalarWhereInput;
+  NOT?: CommentScalarWhereInput[] | CommentScalarWhereInput;
+}
+
+export interface CommentUpdateManyWithWhereNestedInput {
+  where: CommentScalarWhereInput;
+  data: CommentUpdateManyDataInput;
+}
+
+export interface CommentUpdateManyDataInput {
+  text?: String;
+}
+
+export interface PostUpdatehashTagsInput {
+  set?: String[] | String;
+}
+
+export interface PostUpsertWithoutLikesInput {
+  update: PostUpdateWithoutLikesDataInput;
+  create: PostCreateWithoutLikesInput;
+}
+
+export interface LikeUpsertWithWhereUniqueWithoutUserInput {
+  where: LikeWhereUniqueInput;
+  update: LikeUpdateWithoutUserDataInput;
+  create: LikeCreateWithoutUserInput;
+}
+
+export interface LikeScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  AND?: LikeScalarWhereInput[] | LikeScalarWhereInput;
+  OR?: LikeScalarWhereInput[] | LikeScalarWhereInput;
+  NOT?: LikeScalarWhereInput[] | LikeScalarWhereInput;
+}
+
+export interface UserUpsertWithoutPostsInput {
+  update: UserUpdateWithoutPostsDataInput;
+  create: UserCreateWithoutPostsInput;
+}
+
+export interface PostUpsertWithoutCommentsInput {
+  update: PostUpdateWithoutCommentsDataInput;
+  create: PostCreateWithoutCommentsInput;
+}
+
+export interface CommentUpsertWithWhereUniqueWithoutUserInput {
+  where: CommentWhereUniqueInput;
+  update: CommentUpdateWithoutUserDataInput;
+  create: CommentCreateWithoutUserInput;
+}
+
+export interface UserUpsertWithoutLikesInput {
+  update: UserUpdateWithoutLikesDataInput;
+  create: UserCreateWithoutLikesInput;
+}
+
+export interface LikeUpsertWithWhereUniqueWithoutPostInput {
+  where: LikeWhereUniqueInput;
+  update: LikeUpdateWithoutPostDataInput;
+  create: LikeCreateWithoutPostInput;
+}
+
+export interface PostUpsertWithWhereUniqueWithoutUserInput {
+  where: PostWhereUniqueInput;
+  update: PostUpdateWithoutUserDataInput;
+  create: PostCreateWithoutUserInput;
+}
+
+export interface PostScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  title?: String;
+  title_not?: String;
+  title_in?: String[] | String;
+  title_not_in?: String[] | String;
+  title_lt?: String;
+  title_lte?: String;
+  title_gt?: String;
+  title_gte?: String;
+  title_contains?: String;
+  title_not_contains?: String;
+  title_starts_with?: String;
+  title_not_starts_with?: String;
+  title_ends_with?: String;
+  title_not_ends_with?: String;
+  subTitle?: String;
+  subTitle_not?: String;
+  subTitle_in?: String[] | String;
+  subTitle_not_in?: String[] | String;
+  subTitle_lt?: String;
+  subTitle_lte?: String;
+  subTitle_gt?: String;
+  subTitle_gte?: String;
+  subTitle_contains?: String;
+  subTitle_not_contains?: String;
+  subTitle_starts_with?: String;
+  subTitle_not_starts_with?: String;
+  subTitle_ends_with?: String;
+  subTitle_not_ends_with?: String;
+  isLiked?: Boolean;
+  isLiked_not?: Boolean;
+  AND?: PostScalarWhereInput[] | PostScalarWhereInput;
+  OR?: PostScalarWhereInput[] | PostScalarWhereInput;
+  NOT?: PostScalarWhereInput[] | PostScalarWhereInput;
+}
+
+export interface PostUpdateManyWithWhereNestedInput {
+  where: PostScalarWhereInput;
+  data: PostUpdateManyDataInput;
+}
+
+export interface PostUpdateManyDataInput {
+  title?: String;
+  subTitle?: String;
+  isLiked?: Boolean;
+  hashTags?: PostUpdatehashTagsInput;
+}
+
+export interface UserUpsertWithoutCommentsInput {
+  update: UserUpdateWithoutCommentsDataInput;
+  create: UserCreateWithoutCommentsInput;
+}
+
+export interface CommentUpdateManyMutationInput {
+  text?: String;
+}
+
+export interface FileCreateInput {
+  url: String;
+  card?: CardCreateOneWithoutFilesInput;
+}
+
+export interface CardCreateOneWithoutFilesInput {
+  create?: CardCreateWithoutFilesInput;
+  connect?: CardWhereUniqueInput;
+}
+
+export interface CardCreateWithoutFilesInput {
+  title: String;
+  subTitle: String;
+  location?: String;
+  contents?: CardCreatecontentsInput;
+  day?: String;
+  time?: String;
+  cost?: String;
+  schedule?: String;
+  homepage?: String;
+  phoneNumber?: String;
+  park?: String;
+  info?: String;
+}
+
+export interface FileUpdateInput {
+  url?: String;
+  card?: CardUpdateOneWithoutFilesInput;
+}
+
+export interface CardUpdateOneWithoutFilesInput {
+  create?: CardCreateWithoutFilesInput;
+  update?: CardUpdateWithoutFilesDataInput;
+  upsert?: CardUpsertWithoutFilesInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: CardWhereUniqueInput;
+}
+
+export interface CardUpdateWithoutFilesDataInput {
+  title?: String;
+  subTitle?: String;
+  location?: String;
+  contents?: CardUpdatecontentsInput;
+  day?: String;
+  time?: String;
+  cost?: String;
+  schedule?: String;
+  homepage?: String;
+  phoneNumber?: String;
+  park?: String;
+  info?: String;
+}
+
+export interface CardUpsertWithoutFilesInput {
+  update: CardUpdateWithoutFilesDataInput;
+  create: CardCreateWithoutFilesInput;
+}
+
+export interface FileUpdateManyMutationInput {
+  url?: String;
+}
+
+export interface LikeCreateInput {
+  user?: UserCreateOneWithoutLikesInput;
+  post?: PostCreateOneWithoutLikesInput;
+}
+
+export interface LikeUpdateInput {
+  user?: UserUpdateOneWithoutLikesInput;
+  post?: PostUpdateOneWithoutLikesInput;
+}
+
+export interface PostCreateInput {
+  title: String;
+  subTitle: String;
+  user?: UserCreateOneWithoutPostsInput;
+  cards?: CardCreateManyInput;
+  likes?: LikeCreateManyWithoutPostInput;
+  comments?: CommentCreateManyWithoutPostInput;
+  isLiked?: Boolean;
+  hashTags?: PostCreatehashTagsInput;
+}
+
+export interface PostUpdateInput {
+  title?: String;
+  subTitle?: String;
+  user?: UserUpdateOneWithoutPostsInput;
+  cards?: CardUpdateManyInput;
+  likes?: LikeUpdateManyWithoutPostInput;
+  comments?: CommentUpdateManyWithoutPostInput;
+  isLiked?: Boolean;
+  hashTags?: PostUpdatehashTagsInput;
+}
+
+export interface PostUpdateManyMutationInput {
+  title?: String;
+  subTitle?: String;
+  isLiked?: Boolean;
+  hashTags?: PostUpdatehashTagsInput;
+}
+
+export interface UserCreateInput {
+  profilePhoto: String;
+  name: String;
+  account: String;
+  posts?: PostCreateManyWithoutUserInput;
+  likes?: LikeCreateManyWithoutUserInput;
+  comments?: CommentCreateManyWithoutUserInput;
 }
 
 export interface UserUpdateInput {
+  profilePhoto?: String;
   name?: String;
+  account?: String;
+  posts?: PostUpdateManyWithoutUserInput;
+  likes?: LikeUpdateManyWithoutUserInput;
+  comments?: CommentUpdateManyWithoutUserInput;
 }
 
 export interface UserUpdateManyMutationInput {
+  profilePhoto?: String;
   name?: String;
+  account?: String;
+}
+
+export interface CardSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: CardWhereInput;
+  AND?: CardSubscriptionWhereInput[] | CardSubscriptionWhereInput;
+  OR?: CardSubscriptionWhereInput[] | CardSubscriptionWhereInput;
+  NOT?: CardSubscriptionWhereInput[] | CardSubscriptionWhereInput;
+}
+
+export interface CommentSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: CommentWhereInput;
+  AND?: CommentSubscriptionWhereInput[] | CommentSubscriptionWhereInput;
+  OR?: CommentSubscriptionWhereInput[] | CommentSubscriptionWhereInput;
+  NOT?: CommentSubscriptionWhereInput[] | CommentSubscriptionWhereInput;
+}
+
+export interface FileSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: FileWhereInput;
+  AND?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput;
+  OR?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput;
+  NOT?: FileSubscriptionWhereInput[] | FileSubscriptionWhereInput;
+}
+
+export interface LikeSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: LikeWhereInput;
+  AND?: LikeSubscriptionWhereInput[] | LikeSubscriptionWhereInput;
+  OR?: LikeSubscriptionWhereInput[] | LikeSubscriptionWhereInput;
+  NOT?: LikeSubscriptionWhereInput[] | LikeSubscriptionWhereInput;
+}
+
+export interface PostSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: PostWhereInput;
+  AND?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
+  OR?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
+  NOT?: PostSubscriptionWhereInput[] | PostSubscriptionWhereInput;
 }
 
 export interface UserSubscriptionWhereInput {
@@ -180,42 +1960,116 @@ export interface NodeNode {
   id: ID_Output;
 }
 
-export interface User {
+export interface Card {
   id: ID_Output;
-  name: String;
+  title: String;
+  subTitle: String;
+  location?: String;
+  contents: String[];
+  day?: String;
+  time?: String;
+  cost?: String;
+  schedule?: String;
+  homepage?: String;
+  phoneNumber?: String;
+  park?: String;
+  info?: String;
 }
 
-export interface UserPromise extends Promise<User>, Fragmentable {
+export interface CardPromise extends Promise<Card>, Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
+  files: <T = FragmentableArray<File>>(
+    args?: {
+      where?: FileWhereInput;
+      orderBy?: FileOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  title: () => Promise<String>;
+  subTitle: () => Promise<String>;
+  location: () => Promise<String>;
+  contents: () => Promise<String[]>;
+  day: () => Promise<String>;
+  time: () => Promise<String>;
+  cost: () => Promise<String>;
+  schedule: () => Promise<String>;
+  homepage: () => Promise<String>;
+  phoneNumber: () => Promise<String>;
+  park: () => Promise<String>;
+  info: () => Promise<String>;
 }
 
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
+export interface CardSubscription
+  extends Promise<AsyncIterator<Card>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
+  files: <T = Promise<AsyncIterator<FileSubscription>>>(
+    args?: {
+      where?: FileWhereInput;
+      orderBy?: FileOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  title: () => Promise<AsyncIterator<String>>;
+  subTitle: () => Promise<AsyncIterator<String>>;
+  location: () => Promise<AsyncIterator<String>>;
+  contents: () => Promise<AsyncIterator<String[]>>;
+  day: () => Promise<AsyncIterator<String>>;
+  time: () => Promise<AsyncIterator<String>>;
+  cost: () => Promise<AsyncIterator<String>>;
+  schedule: () => Promise<AsyncIterator<String>>;
+  homepage: () => Promise<AsyncIterator<String>>;
+  phoneNumber: () => Promise<AsyncIterator<String>>;
+  park: () => Promise<AsyncIterator<String>>;
+  info: () => Promise<AsyncIterator<String>>;
 }
 
-export interface UserConnection {
+export interface File {
+  id: ID_Output;
+  url: String;
+}
+
+export interface FilePromise extends Promise<File>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  url: () => Promise<String>;
+  card: <T = CardPromise>() => T;
+}
+
+export interface FileSubscription
+  extends Promise<AsyncIterator<File>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  url: () => Promise<AsyncIterator<String>>;
+  card: <T = CardSubscription>() => T;
+}
+
+export interface CardConnection {
   pageInfo: PageInfo;
-  edges: UserEdge[];
+  edges: CardEdge[];
 }
 
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
+export interface CardConnectionPromise
+  extends Promise<CardConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
+  edges: <T = FragmentableArray<CardEdge>>() => T;
+  aggregate: <T = AggregateCardPromise>() => T;
 }
 
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
+export interface CardConnectionSubscription
+  extends Promise<AsyncIterator<CardConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CardEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCardSubscription>() => T;
 }
 
 export interface PageInfo {
@@ -239,6 +2093,498 @@ export interface PageInfoSubscription
   hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
   startCursor: () => Promise<AsyncIterator<String>>;
   endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CardEdge {
+  node: Card;
+  cursor: String;
+}
+
+export interface CardEdgePromise extends Promise<CardEdge>, Fragmentable {
+  node: <T = CardPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface CardEdgeSubscription
+  extends Promise<AsyncIterator<CardEdge>>,
+    Fragmentable {
+  node: <T = CardSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateCard {
+  count: Int;
+}
+
+export interface AggregateCardPromise
+  extends Promise<AggregateCard>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateCardSubscription
+  extends Promise<AsyncIterator<AggregateCard>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Comment {
+  id: ID_Output;
+  text: String;
+}
+
+export interface CommentPromise extends Promise<Comment>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  text: () => Promise<String>;
+  user: <T = UserPromise>() => T;
+  post: <T = PostPromise>() => T;
+}
+
+export interface CommentSubscription
+  extends Promise<AsyncIterator<Comment>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  text: () => Promise<AsyncIterator<String>>;
+  user: <T = UserSubscription>() => T;
+  post: <T = PostSubscription>() => T;
+}
+
+export interface User {
+  id: ID_Output;
+  profilePhoto: String;
+  name: String;
+  account: String;
+}
+
+export interface UserPromise extends Promise<User>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  profilePhoto: () => Promise<String>;
+  name: () => Promise<String>;
+  account: () => Promise<String>;
+  posts: <T = FragmentableArray<Post>>(
+    args?: {
+      where?: PostWhereInput;
+      orderBy?: PostOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  likes: <T = FragmentableArray<Like>>(
+    args?: {
+      where?: LikeWhereInput;
+      orderBy?: LikeOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  comments: <T = FragmentableArray<Comment>>(
+    args?: {
+      where?: CommentWhereInput;
+      orderBy?: CommentOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  profilePhoto: () => Promise<AsyncIterator<String>>;
+  name: () => Promise<AsyncIterator<String>>;
+  account: () => Promise<AsyncIterator<String>>;
+  posts: <T = Promise<AsyncIterator<PostSubscription>>>(
+    args?: {
+      where?: PostWhereInput;
+      orderBy?: PostOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  likes: <T = Promise<AsyncIterator<LikeSubscription>>>(
+    args?: {
+      where?: LikeWhereInput;
+      orderBy?: LikeOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  comments: <T = Promise<AsyncIterator<CommentSubscription>>>(
+    args?: {
+      where?: CommentWhereInput;
+      orderBy?: CommentOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface Post {
+  id: ID_Output;
+  title: String;
+  subTitle: String;
+  isLiked?: Boolean;
+  hashTags: String[];
+}
+
+export interface PostPromise extends Promise<Post>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  subTitle: () => Promise<String>;
+  user: <T = UserPromise>() => T;
+  cards: <T = FragmentableArray<Card>>(
+    args?: {
+      where?: CardWhereInput;
+      orderBy?: CardOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  likes: <T = FragmentableArray<Like>>(
+    args?: {
+      where?: LikeWhereInput;
+      orderBy?: LikeOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  comments: <T = FragmentableArray<Comment>>(
+    args?: {
+      where?: CommentWhereInput;
+      orderBy?: CommentOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  isLiked: () => Promise<Boolean>;
+  hashTags: () => Promise<String[]>;
+}
+
+export interface PostSubscription
+  extends Promise<AsyncIterator<Post>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  subTitle: () => Promise<AsyncIterator<String>>;
+  user: <T = UserSubscription>() => T;
+  cards: <T = Promise<AsyncIterator<CardSubscription>>>(
+    args?: {
+      where?: CardWhereInput;
+      orderBy?: CardOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  likes: <T = Promise<AsyncIterator<LikeSubscription>>>(
+    args?: {
+      where?: LikeWhereInput;
+      orderBy?: LikeOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  comments: <T = Promise<AsyncIterator<CommentSubscription>>>(
+    args?: {
+      where?: CommentWhereInput;
+      orderBy?: CommentOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  isLiked: () => Promise<AsyncIterator<Boolean>>;
+  hashTags: () => Promise<AsyncIterator<String[]>>;
+}
+
+export interface Like {
+  id: ID_Output;
+}
+
+export interface LikePromise extends Promise<Like>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  post: <T = PostPromise>() => T;
+}
+
+export interface LikeSubscription
+  extends Promise<AsyncIterator<Like>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  post: <T = PostSubscription>() => T;
+}
+
+export interface CommentConnection {
+  pageInfo: PageInfo;
+  edges: CommentEdge[];
+}
+
+export interface CommentConnectionPromise
+  extends Promise<CommentConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<CommentEdge>>() => T;
+  aggregate: <T = AggregateCommentPromise>() => T;
+}
+
+export interface CommentConnectionSubscription
+  extends Promise<AsyncIterator<CommentConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CommentEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCommentSubscription>() => T;
+}
+
+export interface CommentEdge {
+  node: Comment;
+  cursor: String;
+}
+
+export interface CommentEdgePromise extends Promise<CommentEdge>, Fragmentable {
+  node: <T = CommentPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface CommentEdgeSubscription
+  extends Promise<AsyncIterator<CommentEdge>>,
+    Fragmentable {
+  node: <T = CommentSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateComment {
+  count: Int;
+}
+
+export interface AggregateCommentPromise
+  extends Promise<AggregateComment>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateCommentSubscription
+  extends Promise<AsyncIterator<AggregateComment>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface FileConnection {
+  pageInfo: PageInfo;
+  edges: FileEdge[];
+}
+
+export interface FileConnectionPromise
+  extends Promise<FileConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<FileEdge>>() => T;
+  aggregate: <T = AggregateFilePromise>() => T;
+}
+
+export interface FileConnectionSubscription
+  extends Promise<AsyncIterator<FileConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<FileEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateFileSubscription>() => T;
+}
+
+export interface FileEdge {
+  node: File;
+  cursor: String;
+}
+
+export interface FileEdgePromise extends Promise<FileEdge>, Fragmentable {
+  node: <T = FilePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface FileEdgeSubscription
+  extends Promise<AsyncIterator<FileEdge>>,
+    Fragmentable {
+  node: <T = FileSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateFile {
+  count: Int;
+}
+
+export interface AggregateFilePromise
+  extends Promise<AggregateFile>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateFileSubscription
+  extends Promise<AsyncIterator<AggregateFile>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface LikeConnection {
+  pageInfo: PageInfo;
+  edges: LikeEdge[];
+}
+
+export interface LikeConnectionPromise
+  extends Promise<LikeConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<LikeEdge>>() => T;
+  aggregate: <T = AggregateLikePromise>() => T;
+}
+
+export interface LikeConnectionSubscription
+  extends Promise<AsyncIterator<LikeConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<LikeEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateLikeSubscription>() => T;
+}
+
+export interface LikeEdge {
+  node: Like;
+  cursor: String;
+}
+
+export interface LikeEdgePromise extends Promise<LikeEdge>, Fragmentable {
+  node: <T = LikePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface LikeEdgeSubscription
+  extends Promise<AsyncIterator<LikeEdge>>,
+    Fragmentable {
+  node: <T = LikeSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateLike {
+  count: Int;
+}
+
+export interface AggregateLikePromise
+  extends Promise<AggregateLike>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateLikeSubscription
+  extends Promise<AsyncIterator<AggregateLike>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface PostConnection {
+  pageInfo: PageInfo;
+  edges: PostEdge[];
+}
+
+export interface PostConnectionPromise
+  extends Promise<PostConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<PostEdge>>() => T;
+  aggregate: <T = AggregatePostPromise>() => T;
+}
+
+export interface PostConnectionSubscription
+  extends Promise<AsyncIterator<PostConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<PostEdgeSubscription>>>() => T;
+  aggregate: <T = AggregatePostSubscription>() => T;
+}
+
+export interface PostEdge {
+  node: Post;
+  cursor: String;
+}
+
+export interface PostEdgePromise extends Promise<PostEdge>, Fragmentable {
+  node: <T = PostPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface PostEdgeSubscription
+  extends Promise<AsyncIterator<PostEdge>>,
+    Fragmentable {
+  node: <T = PostSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregatePost {
+  count: Int;
+}
+
+export interface AggregatePostPromise
+  extends Promise<AggregatePost>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregatePostSubscription
+  extends Promise<AsyncIterator<AggregatePost>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
+}
+
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
 }
 
 export interface UserEdge {
@@ -290,6 +2636,265 @@ export interface BatchPayloadSubscription
   count: () => Promise<AsyncIterator<Long>>;
 }
 
+export interface CardSubscriptionPayload {
+  mutation: MutationType;
+  node: Card;
+  updatedFields: String[];
+  previousValues: CardPreviousValues;
+}
+
+export interface CardSubscriptionPayloadPromise
+  extends Promise<CardSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = CardPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CardPreviousValuesPromise>() => T;
+}
+
+export interface CardSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CardSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CardSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CardPreviousValuesSubscription>() => T;
+}
+
+export interface CardPreviousValues {
+  id: ID_Output;
+  title: String;
+  subTitle: String;
+  location?: String;
+  contents: String[];
+  day?: String;
+  time?: String;
+  cost?: String;
+  schedule?: String;
+  homepage?: String;
+  phoneNumber?: String;
+  park?: String;
+  info?: String;
+}
+
+export interface CardPreviousValuesPromise
+  extends Promise<CardPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  subTitle: () => Promise<String>;
+  location: () => Promise<String>;
+  contents: () => Promise<String[]>;
+  day: () => Promise<String>;
+  time: () => Promise<String>;
+  cost: () => Promise<String>;
+  schedule: () => Promise<String>;
+  homepage: () => Promise<String>;
+  phoneNumber: () => Promise<String>;
+  park: () => Promise<String>;
+  info: () => Promise<String>;
+}
+
+export interface CardPreviousValuesSubscription
+  extends Promise<AsyncIterator<CardPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  subTitle: () => Promise<AsyncIterator<String>>;
+  location: () => Promise<AsyncIterator<String>>;
+  contents: () => Promise<AsyncIterator<String[]>>;
+  day: () => Promise<AsyncIterator<String>>;
+  time: () => Promise<AsyncIterator<String>>;
+  cost: () => Promise<AsyncIterator<String>>;
+  schedule: () => Promise<AsyncIterator<String>>;
+  homepage: () => Promise<AsyncIterator<String>>;
+  phoneNumber: () => Promise<AsyncIterator<String>>;
+  park: () => Promise<AsyncIterator<String>>;
+  info: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CommentSubscriptionPayload {
+  mutation: MutationType;
+  node: Comment;
+  updatedFields: String[];
+  previousValues: CommentPreviousValues;
+}
+
+export interface CommentSubscriptionPayloadPromise
+  extends Promise<CommentSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = CommentPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CommentPreviousValuesPromise>() => T;
+}
+
+export interface CommentSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CommentSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CommentSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CommentPreviousValuesSubscription>() => T;
+}
+
+export interface CommentPreviousValues {
+  id: ID_Output;
+  text: String;
+}
+
+export interface CommentPreviousValuesPromise
+  extends Promise<CommentPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  text: () => Promise<String>;
+}
+
+export interface CommentPreviousValuesSubscription
+  extends Promise<AsyncIterator<CommentPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  text: () => Promise<AsyncIterator<String>>;
+}
+
+export interface FileSubscriptionPayload {
+  mutation: MutationType;
+  node: File;
+  updatedFields: String[];
+  previousValues: FilePreviousValues;
+}
+
+export interface FileSubscriptionPayloadPromise
+  extends Promise<FileSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = FilePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = FilePreviousValuesPromise>() => T;
+}
+
+export interface FileSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<FileSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = FileSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = FilePreviousValuesSubscription>() => T;
+}
+
+export interface FilePreviousValues {
+  id: ID_Output;
+  url: String;
+}
+
+export interface FilePreviousValuesPromise
+  extends Promise<FilePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  url: () => Promise<String>;
+}
+
+export interface FilePreviousValuesSubscription
+  extends Promise<AsyncIterator<FilePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  url: () => Promise<AsyncIterator<String>>;
+}
+
+export interface LikeSubscriptionPayload {
+  mutation: MutationType;
+  node: Like;
+  updatedFields: String[];
+  previousValues: LikePreviousValues;
+}
+
+export interface LikeSubscriptionPayloadPromise
+  extends Promise<LikeSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = LikePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = LikePreviousValuesPromise>() => T;
+}
+
+export interface LikeSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<LikeSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = LikeSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = LikePreviousValuesSubscription>() => T;
+}
+
+export interface LikePreviousValues {
+  id: ID_Output;
+}
+
+export interface LikePreviousValuesPromise
+  extends Promise<LikePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+}
+
+export interface LikePreviousValuesSubscription
+  extends Promise<AsyncIterator<LikePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+}
+
+export interface PostSubscriptionPayload {
+  mutation: MutationType;
+  node: Post;
+  updatedFields: String[];
+  previousValues: PostPreviousValues;
+}
+
+export interface PostSubscriptionPayloadPromise
+  extends Promise<PostSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = PostPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = PostPreviousValuesPromise>() => T;
+}
+
+export interface PostSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<PostSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = PostSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = PostPreviousValuesSubscription>() => T;
+}
+
+export interface PostPreviousValues {
+  id: ID_Output;
+  title: String;
+  subTitle: String;
+  isLiked?: Boolean;
+  hashTags: String[];
+}
+
+export interface PostPreviousValuesPromise
+  extends Promise<PostPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  subTitle: () => Promise<String>;
+  isLiked: () => Promise<Boolean>;
+  hashTags: () => Promise<String[]>;
+}
+
+export interface PostPreviousValuesSubscription
+  extends Promise<AsyncIterator<PostPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  subTitle: () => Promise<AsyncIterator<String>>;
+  isLiked: () => Promise<AsyncIterator<Boolean>>;
+  hashTags: () => Promise<AsyncIterator<String[]>>;
+}
+
 export interface UserSubscriptionPayload {
   mutation: MutationType;
   node: User;
@@ -317,21 +2922,27 @@ export interface UserSubscriptionPayloadSubscription
 
 export interface UserPreviousValues {
   id: ID_Output;
+  profilePhoto: String;
   name: String;
+  account: String;
 }
 
 export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  profilePhoto: () => Promise<String>;
   name: () => Promise<String>;
+  account: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  profilePhoto: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
+  account: () => Promise<AsyncIterator<String>>;
 }
 
 /*
@@ -364,6 +2975,26 @@ export type Long = string;
 export const models: Model[] = [
   {
     name: "User",
+    embedded: false
+  },
+  {
+    name: "Post",
+    embedded: false
+  },
+  {
+    name: "Like",
+    embedded: false
+  },
+  {
+    name: "Comment",
+    embedded: false
+  },
+  {
+    name: "File",
+    embedded: false
+  },
+  {
+    name: "Card",
     embedded: false
   }
 ];
