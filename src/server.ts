@@ -2,14 +2,15 @@ require("dotenv").config();
 import { GraphQLServer } from "graphql-yoga";
 import schema from "./schema";
 import logger from "morgan";
-
+import { authenticateJwt } from "./passport";
+import { isAuthenticated } from "./middlewares";
 const PORT = process.env.PORT || 4000;
 
 const server = new GraphQLServer({
   schema,
-  context: ({ request }: any) => ({ request })
+  context: ({ request }: any) => ({ request, isAuthenticated })
 });
-
+server.express.use(authenticateJwt);
 server.express.use(logger("dev"));
 
 server.start({ port: PORT }, () =>

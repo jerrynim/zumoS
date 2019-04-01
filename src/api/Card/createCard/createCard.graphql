@@ -1,0 +1,17 @@
+type Mutation {
+  createCard(
+    files: [String!]!
+    title: String!
+    subTitle: String!
+    contents: [String!]!
+    location: String
+    day: String
+    time: String
+    cost: String
+    schedule: String
+    homepage: String
+    phoneNumber: String
+    park: String
+    info: String
+  ): Card!
+}

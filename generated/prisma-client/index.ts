@@ -999,7 +999,6 @@ export interface PostCreateWithoutUserInput {
   likes?: LikeCreateManyWithoutPostInput;
   comments?: CommentCreateManyWithoutPostInput;
   isLiked?: Boolean;
-  hashTags?: PostCreatehashTagsInput;
 }
 
 export interface CardCreateManyInput {
@@ -1051,7 +1050,6 @@ export interface PostCreateWithoutCommentsInput {
   cards?: CardCreateManyInput;
   likes?: LikeCreateManyWithoutPostInput;
   isLiked?: Boolean;
-  hashTags?: PostCreatehashTagsInput;
 }
 
 export interface UserCreateOneWithoutPostsInput {
@@ -1088,7 +1086,6 @@ export interface PostCreateWithoutLikesInput {
   cards?: CardCreateManyInput;
   comments?: CommentCreateManyWithoutPostInput;
   isLiked?: Boolean;
-  hashTags?: PostCreatehashTagsInput;
 }
 
 export interface CommentCreateManyWithoutPostInput {
@@ -1099,10 +1096,6 @@ export interface CommentCreateManyWithoutPostInput {
 export interface CommentCreateWithoutPostInput {
   text: String;
   user?: UserCreateOneWithoutCommentsInput;
-}
-
-export interface PostCreatehashTagsInput {
-  set?: String[] | String;
 }
 
 export interface CommentUpdateInput {
@@ -1158,7 +1151,6 @@ export interface PostUpdateWithoutUserDataInput {
   likes?: LikeUpdateManyWithoutPostInput;
   comments?: CommentUpdateManyWithoutPostInput;
   isLiked?: Boolean;
-  hashTags?: PostUpdatehashTagsInput;
 }
 
 export interface CardUpdateManyInput {
@@ -1485,7 +1477,6 @@ export interface PostUpdateWithoutCommentsDataInput {
   cards?: CardUpdateManyInput;
   likes?: LikeUpdateManyWithoutPostInput;
   isLiked?: Boolean;
-  hashTags?: PostUpdatehashTagsInput;
 }
 
 export interface UserUpdateOneWithoutPostsInput {
@@ -1545,7 +1536,6 @@ export interface PostUpdateWithoutLikesDataInput {
   cards?: CardUpdateManyInput;
   comments?: CommentUpdateManyWithoutPostInput;
   isLiked?: Boolean;
-  hashTags?: PostUpdatehashTagsInput;
 }
 
 export interface CommentUpdateManyWithoutPostInput {
@@ -1623,10 +1613,6 @@ export interface CommentUpdateManyWithWhereNestedInput {
 
 export interface CommentUpdateManyDataInput {
   text?: String;
-}
-
-export interface PostUpdatehashTagsInput {
-  set?: String[] | String;
 }
 
 export interface PostUpsertWithoutLikesInput {
@@ -1752,7 +1738,6 @@ export interface PostUpdateManyDataInput {
   title?: String;
   subTitle?: String;
   isLiked?: Boolean;
-  hashTags?: PostUpdatehashTagsInput;
 }
 
 export interface UserUpsertWithoutCommentsInput {
@@ -1845,7 +1830,6 @@ export interface PostCreateInput {
   likes?: LikeCreateManyWithoutPostInput;
   comments?: CommentCreateManyWithoutPostInput;
   isLiked?: Boolean;
-  hashTags?: PostCreatehashTagsInput;
 }
 
 export interface PostUpdateInput {
@@ -1856,14 +1840,12 @@ export interface PostUpdateInput {
   likes?: LikeUpdateManyWithoutPostInput;
   comments?: CommentUpdateManyWithoutPostInput;
   isLiked?: Boolean;
-  hashTags?: PostUpdatehashTagsInput;
 }
 
 export interface PostUpdateManyMutationInput {
   title?: String;
   subTitle?: String;
   isLiked?: Boolean;
-  hashTags?: PostUpdatehashTagsInput;
 }
 
 export interface UserCreateInput {
@@ -2243,7 +2225,6 @@ export interface Post {
   title: String;
   subTitle: String;
   isLiked?: Boolean;
-  hashTags: String[];
 }
 
 export interface PostPromise extends Promise<Post>, Fragmentable {
@@ -2285,7 +2266,6 @@ export interface PostPromise extends Promise<Post>, Fragmentable {
     }
   ) => T;
   isLiked: () => Promise<Boolean>;
-  hashTags: () => Promise<String[]>;
 }
 
 export interface PostSubscription
@@ -2329,7 +2309,6 @@ export interface PostSubscription
     }
   ) => T;
   isLiked: () => Promise<AsyncIterator<Boolean>>;
-  hashTags: () => Promise<AsyncIterator<String[]>>;
 }
 
 export interface Like {
@@ -2872,7 +2851,6 @@ export interface PostPreviousValues {
   title: String;
   subTitle: String;
   isLiked?: Boolean;
-  hashTags: String[];
 }
 
 export interface PostPreviousValuesPromise
@@ -2882,7 +2860,6 @@ export interface PostPreviousValuesPromise
   title: () => Promise<String>;
   subTitle: () => Promise<String>;
   isLiked: () => Promise<Boolean>;
-  hashTags: () => Promise<String[]>;
 }
 
 export interface PostPreviousValuesSubscription
@@ -2892,7 +2869,6 @@ export interface PostPreviousValuesSubscription
   title: () => Promise<AsyncIterator<String>>;
   subTitle: () => Promise<AsyncIterator<String>>;
   isLiked: () => Promise<AsyncIterator<Boolean>>;
-  hashTags: () => Promise<AsyncIterator<String[]>>;
 }
 
 export interface UserSubscriptionPayload {

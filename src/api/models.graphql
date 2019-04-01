@@ -6,6 +6,8 @@ type User {
   posts: [Post!]!
   likes: [Like!]!
   comments: [Comment!]!
+  createdAt: String
+  updatedAt: String
 }
 type Post {
   id: ID!
@@ -16,13 +18,17 @@ type Post {
   likes: [Like!]!
   comments: [Comment!]!
   isLiked: Boolean
-  hashTags: [String!]!
+  likeCount: Int!
+  createdAt: String
+  updatedAt: String
 }
 
 type Like {
   id: ID!
   user: User
   post: Post
+  createdAt: String
+  updatedAt: String
 }
 
 type Comment {
@@ -30,11 +36,15 @@ type Comment {
   text: String!
   user: User
   post: Post
+  createdAt: String
+  updatedAt: String
 }
 type File {
   id: ID!
   url: String!
   card: Card
+  createdAt: String
+  updatedAt: String
 }
 
 type Card {
@@ -52,4 +62,6 @@ type Card {
   phoneNumber: String
   park: String
   info: String
+  createdAt: String
+  updatedAt: String
 }

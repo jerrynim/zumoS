@@ -1296,17 +1296,12 @@ type Post {
   likes(where: LikeWhereInput, orderBy: LikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Like!]
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
   isLiked: Boolean
-  hashTags: [String!]!
 }
 
 type PostConnection {
   pageInfo: PageInfo!
   edges: [PostEdge]!
   aggregate: AggregatePost!
-}
-
-input PostCreatehashTagsInput {
-  set: [String!]
 }
 
 input PostCreateInput {
@@ -1317,7 +1312,6 @@ input PostCreateInput {
   likes: LikeCreateManyWithoutPostInput
   comments: CommentCreateManyWithoutPostInput
   isLiked: Boolean
-  hashTags: PostCreatehashTagsInput
 }
 
 input PostCreateManyWithoutUserInput {
@@ -1342,7 +1336,6 @@ input PostCreateWithoutCommentsInput {
   cards: CardCreateManyInput
   likes: LikeCreateManyWithoutPostInput
   isLiked: Boolean
-  hashTags: PostCreatehashTagsInput
 }
 
 input PostCreateWithoutLikesInput {
@@ -1352,7 +1345,6 @@ input PostCreateWithoutLikesInput {
   cards: CardCreateManyInput
   comments: CommentCreateManyWithoutPostInput
   isLiked: Boolean
-  hashTags: PostCreatehashTagsInput
 }
 
 input PostCreateWithoutUserInput {
@@ -1362,7 +1354,6 @@ input PostCreateWithoutUserInput {
   likes: LikeCreateManyWithoutPostInput
   comments: CommentCreateManyWithoutPostInput
   isLiked: Boolean
-  hashTags: PostCreatehashTagsInput
 }
 
 type PostEdge {
@@ -1390,7 +1381,6 @@ type PostPreviousValues {
   title: String!
   subTitle: String!
   isLiked: Boolean
-  hashTags: [String!]!
 }
 
 input PostScalarWhereInput {
@@ -1461,10 +1451,6 @@ input PostSubscriptionWhereInput {
   NOT: [PostSubscriptionWhereInput!]
 }
 
-input PostUpdatehashTagsInput {
-  set: [String!]
-}
-
 input PostUpdateInput {
   title: String
   subTitle: String
@@ -1473,21 +1459,18 @@ input PostUpdateInput {
   likes: LikeUpdateManyWithoutPostInput
   comments: CommentUpdateManyWithoutPostInput
   isLiked: Boolean
-  hashTags: PostUpdatehashTagsInput
 }
 
 input PostUpdateManyDataInput {
   title: String
   subTitle: String
   isLiked: Boolean
-  hashTags: PostUpdatehashTagsInput
 }
 
 input PostUpdateManyMutationInput {
   title: String
   subTitle: String
   isLiked: Boolean
-  hashTags: PostUpdatehashTagsInput
 }
 
 input PostUpdateManyWithoutUserInput {
@@ -1532,7 +1515,6 @@ input PostUpdateWithoutCommentsDataInput {
   cards: CardUpdateManyInput
   likes: LikeUpdateManyWithoutPostInput
   isLiked: Boolean
-  hashTags: PostUpdatehashTagsInput
 }
 
 input PostUpdateWithoutLikesDataInput {
@@ -1542,7 +1524,6 @@ input PostUpdateWithoutLikesDataInput {
   cards: CardUpdateManyInput
   comments: CommentUpdateManyWithoutPostInput
   isLiked: Boolean
-  hashTags: PostUpdatehashTagsInput
 }
 
 input PostUpdateWithoutUserDataInput {
@@ -1552,7 +1533,6 @@ input PostUpdateWithoutUserDataInput {
   likes: LikeUpdateManyWithoutPostInput
   comments: CommentUpdateManyWithoutPostInput
   isLiked: Boolean
-  hashTags: PostUpdatehashTagsInput
 }
 
 input PostUpdateWithWhereUniqueWithoutUserInput {

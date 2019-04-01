@@ -16,7 +16,6 @@ type Post {
   likes: [Like!]! @relation(name: "LikesOfPost", onDelete: CASCADE)
   comments: [Comment!]! @relation(name: "CommentsOfPost", onDelete: CASCADE)
   isLiked: Boolean
-  hashTags: [String!]!
 }
 
 type Like {

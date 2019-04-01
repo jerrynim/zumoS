@@ -1,3 +1,9 @@
+type Mutation {
+  createCard(files: [String!]!, title: String!, subTitle: String!, location: String, contents: [String!], day: String, time: String, cost: String, schedule: String, homepage: String, phoneNumber: String, park: String, info: String): Card!
+  createPost(title: String!, subTitle: String!): Post!
+  createAccount(profilePhoto: String!, name: String!, account: String!): User!
+}
+
 type User {
   id: ID!
   profilePhoto: String!
@@ -6,6 +12,8 @@ type User {
   posts: [Post!]!
   likes: [Like!]!
   comments: [Comment!]!
+  createdAt: String
+  updatedAt: String
 }
 
 type Post {
@@ -17,13 +25,17 @@ type Post {
   likes: [Like!]!
   comments: [Comment!]!
   isLiked: Boolean
-  hashTags: [String!]!
+  likeCount: Int!
+  createdAt: String
+  updatedAt: String
 }
 
 type Like {
   id: ID!
   user: User
   post: Post
+  createdAt: String
+  updatedAt: String
 }
 
 type Comment {
@@ -31,12 +43,16 @@ type Comment {
   text: String!
   user: User
   post: Post
+  createdAt: String
+  updatedAt: String
 }
 
 type File {
   id: ID!
   url: String!
   card: Card
+  createdAt: String
+  updatedAt: String
 }
 
 type Card {
@@ -54,10 +70,8 @@ type Card {
   phoneNumber: String
   park: String
   info: String
-}
-
-type Mutation {
-  createAccount(profilePhoto: String!, name: String!, account: String!): User!
+  createdAt: String
+  updatedAt: String
 }
 
 type Query {
