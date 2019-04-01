@@ -56,6 +56,10 @@ type Card {
   info: String
 }
 
+type Mutation {
+  createAccount(profilePhoto: String!, name: String!, account: String!): User!
+}
+
 type Query {
   seeUser(id: String!): User!
 }

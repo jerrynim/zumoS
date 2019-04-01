@@ -1,6 +1,4 @@
-export const typeDefs = [
-  "type User {\n  id: ID!\n  profilePhoto: String!\n  name: String!\n  account: String!\n  posts: [Post!]!\n  likes: [Like!]!\n  comments: [Comment!]!\n}\n\ntype Post {\n  id: ID!\n  title: String!\n  subTitle: String!\n  user: User\n  cards: [Card!]!\n  likes: [Like!]!\n  comments: [Comment!]!\n  isLiked: Boolean\n  hashTags: [String!]!\n}\n\ntype Like {\n  id: ID!\n  user: User\n  post: Post\n}\n\ntype Comment {\n  id: ID!\n  text: String!\n  user: User\n  post: Post\n}\n\ntype File {\n  id: ID!\n  url: String!\n  card: Card\n}\n\ntype Card {\n  id: ID!\n  files: [File!]!\n  title: String!\n  subTitle: String!\n  location: String\n  contents: [String!]!\n  day: String\n  time: String\n  cost: String\n  schedule: String\n  homepage: String\n  phoneNumber: String\n  park: String\n  info: String\n}\n\ntype Query {\n  seeUser(id: String!): User!\n}\n"
-];
+export const typeDefs = ["type User {\n  id: ID!\n  profilePhoto: String!\n  name: String!\n  account: String!\n  posts: [Post!]!\n  likes: [Like!]!\n  comments: [Comment!]!\n}\n\ntype Post {\n  id: ID!\n  title: String!\n  subTitle: String!\n  user: User\n  cards: [Card!]!\n  likes: [Like!]!\n  comments: [Comment!]!\n  isLiked: Boolean\n  hashTags: [String!]!\n}\n\ntype Like {\n  id: ID!\n  user: User\n  post: Post\n}\n\ntype Comment {\n  id: ID!\n  text: String!\n  user: User\n  post: Post\n}\n\ntype File {\n  id: ID!\n  url: String!\n  card: Card\n}\n\ntype Card {\n  id: ID!\n  files: [File!]!\n  title: String!\n  subTitle: String!\n  location: String\n  contents: [String!]!\n  day: String\n  time: String\n  cost: String\n  schedule: String\n  homepage: String\n  phoneNumber: String\n  park: String\n  info: String\n}\n\ntype Mutation {\n  createAccount(profilePhoto: String!, name: String!, account: String!): User!\n}\n\ntype Query {\n  seeUser(id: String!): User!\n}\n"];
 /* tslint:disable */
 
 export interface Query {
@@ -67,4 +65,14 @@ export interface Comment {
   text: string;
   user: User | null;
   post: Post | null;
+}
+
+export interface Mutation {
+  createAccount: User;
+}
+
+export interface CreateAccountMutationArgs {
+  profilePhoto: string;
+  name: string;
+  account: string;
 }
