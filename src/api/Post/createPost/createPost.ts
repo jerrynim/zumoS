@@ -16,7 +16,6 @@ export default {
         subTitle,
         user: { connect: { id: user.id } }
       });
-
       return post;
     }
   }

@@ -5,6 +5,7 @@ type User {
   account: String!
   posts: [Post!]!
   likes: [Like!]!
+  cards: [Card!]!
   createdAt: String
   updatedAt: String
 }
@@ -48,6 +49,8 @@ type File {
 
 type Card {
   id: ID!
+  user: User!
+  post: Post!
   files: [File!]!
   title: String!
   subTitle: String!

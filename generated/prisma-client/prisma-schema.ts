@@ -32,6 +32,8 @@ type BatchPayload {
 
 type Card {
   id: ID!
+  user: User
+  post: Post
   files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File!]
   title: String!
   subTitle: String!
@@ -58,6 +60,8 @@ input CardCreatecontentsInput {
 }
 
 input CardCreateInput {
+  user: UserCreateOneWithoutCardsInput
+  post: PostCreateOneWithoutCardsInput
   files: FileCreateManyWithoutCardInput
   title: String!
   subTitle: String!
@@ -73,8 +77,13 @@ input CardCreateInput {
   info: String
 }
 
-input CardCreateManyInput {
-  create: [CardCreateInput!]
+input CardCreateManyWithoutPostInput {
+  create: [CardCreateWithoutPostInput!]
+  connect: [CardWhereUniqueInput!]
+}
+
+input CardCreateManyWithoutUserInput {
+  create: [CardCreateWithoutUserInput!]
   connect: [CardWhereUniqueInput!]
 }
 
@@ -84,6 +93,42 @@ input CardCreateOneWithoutFilesInput {
 }
 
 input CardCreateWithoutFilesInput {
+  user: UserCreateOneWithoutCardsInput
+  post: PostCreateOneWithoutCardsInput
+  title: String!
+  subTitle: String!
+  location: String
+  contents: CardCreatecontentsInput
+  day: String
+  time: String
+  cost: String
+  schedule: String
+  homepage: String
+  phoneNumber: String
+  park: String
+  info: String
+}
+
+input CardCreateWithoutPostInput {
+  user: UserCreateOneWithoutCardsInput
+  files: FileCreateManyWithoutCardInput
+  title: String!
+  subTitle: String!
+  location: String
+  contents: CardCreatecontentsInput
+  day: String
+  time: String
+  cost: String
+  schedule: String
+  homepage: String
+  phoneNumber: String
+  park: String
+  info: String
+}
+
+input CardCreateWithoutUserInput {
+  post: PostCreateOneWithoutCardsInput
+  files: FileCreateManyWithoutCardInput
   title: String!
   subTitle: String!
   location: String
@@ -346,23 +391,9 @@ input CardUpdatecontentsInput {
   set: [String!]
 }
 
-input CardUpdateDataInput {
-  files: FileUpdateManyWithoutCardInput
-  title: String
-  subTitle: String
-  location: String
-  contents: CardUpdatecontentsInput
-  day: String
-  time: String
-  cost: String
-  schedule: String
-  homepage: String
-  phoneNumber: String
-  park: String
-  info: String
-}
-
 input CardUpdateInput {
+  user: UserUpdateOneWithoutCardsInput
+  post: PostUpdateOneWithoutCardsInput
   files: FileUpdateManyWithoutCardInput
   title: String
   subTitle: String
@@ -393,18 +424,6 @@ input CardUpdateManyDataInput {
   info: String
 }
 
-input CardUpdateManyInput {
-  create: [CardCreateInput!]
-  update: [CardUpdateWithWhereUniqueNestedInput!]
-  upsert: [CardUpsertWithWhereUniqueNestedInput!]
-  delete: [CardWhereUniqueInput!]
-  connect: [CardWhereUniqueInput!]
-  set: [CardWhereUniqueInput!]
-  disconnect: [CardWhereUniqueInput!]
-  deleteMany: [CardScalarWhereInput!]
-  updateMany: [CardUpdateManyWithWhereNestedInput!]
-}
-
 input CardUpdateManyMutationInput {
   title: String
   subTitle: String
@@ -418,6 +437,30 @@ input CardUpdateManyMutationInput {
   phoneNumber: String
   park: String
   info: String
+}
+
+input CardUpdateManyWithoutPostInput {
+  create: [CardCreateWithoutPostInput!]
+  delete: [CardWhereUniqueInput!]
+  connect: [CardWhereUniqueInput!]
+  set: [CardWhereUniqueInput!]
+  disconnect: [CardWhereUniqueInput!]
+  update: [CardUpdateWithWhereUniqueWithoutPostInput!]
+  upsert: [CardUpsertWithWhereUniqueWithoutPostInput!]
+  deleteMany: [CardScalarWhereInput!]
+  updateMany: [CardUpdateManyWithWhereNestedInput!]
+}
+
+input CardUpdateManyWithoutUserInput {
+  create: [CardCreateWithoutUserInput!]
+  delete: [CardWhereUniqueInput!]
+  connect: [CardWhereUniqueInput!]
+  set: [CardWhereUniqueInput!]
+  disconnect: [CardWhereUniqueInput!]
+  update: [CardUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [CardUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [CardScalarWhereInput!]
+  updateMany: [CardUpdateManyWithWhereNestedInput!]
 }
 
 input CardUpdateManyWithWhereNestedInput {
@@ -435,6 +478,8 @@ input CardUpdateOneWithoutFilesInput {
 }
 
 input CardUpdateWithoutFilesDataInput {
+  user: UserUpdateOneWithoutCardsInput
+  post: PostUpdateOneWithoutCardsInput
   title: String
   subTitle: String
   location: String
@@ -449,9 +494,48 @@ input CardUpdateWithoutFilesDataInput {
   info: String
 }
 
-input CardUpdateWithWhereUniqueNestedInput {
+input CardUpdateWithoutPostDataInput {
+  user: UserUpdateOneWithoutCardsInput
+  files: FileUpdateManyWithoutCardInput
+  title: String
+  subTitle: String
+  location: String
+  contents: CardUpdatecontentsInput
+  day: String
+  time: String
+  cost: String
+  schedule: String
+  homepage: String
+  phoneNumber: String
+  park: String
+  info: String
+}
+
+input CardUpdateWithoutUserDataInput {
+  post: PostUpdateOneWithoutCardsInput
+  files: FileUpdateManyWithoutCardInput
+  title: String
+  subTitle: String
+  location: String
+  contents: CardUpdatecontentsInput
+  day: String
+  time: String
+  cost: String
+  schedule: String
+  homepage: String
+  phoneNumber: String
+  park: String
+  info: String
+}
+
+input CardUpdateWithWhereUniqueWithoutPostInput {
   where: CardWhereUniqueInput!
-  data: CardUpdateDataInput!
+  data: CardUpdateWithoutPostDataInput!
+}
+
+input CardUpdateWithWhereUniqueWithoutUserInput {
+  where: CardWhereUniqueInput!
+  data: CardUpdateWithoutUserDataInput!
 }
 
 input CardUpsertWithoutFilesInput {
@@ -459,10 +543,16 @@ input CardUpsertWithoutFilesInput {
   create: CardCreateWithoutFilesInput!
 }
 
-input CardUpsertWithWhereUniqueNestedInput {
+input CardUpsertWithWhereUniqueWithoutPostInput {
   where: CardWhereUniqueInput!
-  update: CardUpdateDataInput!
-  create: CardCreateInput!
+  update: CardUpdateWithoutPostDataInput!
+  create: CardCreateWithoutPostInput!
+}
+
+input CardUpsertWithWhereUniqueWithoutUserInput {
+  where: CardWhereUniqueInput!
+  update: CardUpdateWithoutUserDataInput!
+  create: CardCreateWithoutUserInput!
 }
 
 input CardWhereInput {
@@ -480,6 +570,8 @@ input CardWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  user: UserWhereInput
+  post: PostWhereInput
   files_every: FileWhereInput
   files_some: FileWhereInput
   files_none: FileWhereInput
@@ -1308,7 +1400,7 @@ input PostCreateInput {
   title: String!
   subTitle: String!
   user: UserCreateOneWithoutPostsInput
-  cards: CardCreateManyInput
+  cards: CardCreateManyWithoutPostInput
   likes: LikeCreateManyWithoutPostInput
   comments: CommentCreateManyWithoutPostInput
   isLiked: Boolean
@@ -1317,6 +1409,11 @@ input PostCreateInput {
 input PostCreateManyWithoutUserInput {
   create: [PostCreateWithoutUserInput!]
   connect: [PostWhereUniqueInput!]
+}
+
+input PostCreateOneWithoutCardsInput {
+  create: PostCreateWithoutCardsInput
+  connect: PostWhereUniqueInput
 }
 
 input PostCreateOneWithoutCommentsInput {
@@ -1329,11 +1426,20 @@ input PostCreateOneWithoutLikesInput {
   connect: PostWhereUniqueInput
 }
 
+input PostCreateWithoutCardsInput {
+  title: String!
+  subTitle: String!
+  user: UserCreateOneWithoutPostsInput
+  likes: LikeCreateManyWithoutPostInput
+  comments: CommentCreateManyWithoutPostInput
+  isLiked: Boolean
+}
+
 input PostCreateWithoutCommentsInput {
   title: String!
   subTitle: String!
   user: UserCreateOneWithoutPostsInput
-  cards: CardCreateManyInput
+  cards: CardCreateManyWithoutPostInput
   likes: LikeCreateManyWithoutPostInput
   isLiked: Boolean
 }
@@ -1342,7 +1448,7 @@ input PostCreateWithoutLikesInput {
   title: String!
   subTitle: String!
   user: UserCreateOneWithoutPostsInput
-  cards: CardCreateManyInput
+  cards: CardCreateManyWithoutPostInput
   comments: CommentCreateManyWithoutPostInput
   isLiked: Boolean
 }
@@ -1350,7 +1456,7 @@ input PostCreateWithoutLikesInput {
 input PostCreateWithoutUserInput {
   title: String!
   subTitle: String!
-  cards: CardCreateManyInput
+  cards: CardCreateManyWithoutPostInput
   likes: LikeCreateManyWithoutPostInput
   comments: CommentCreateManyWithoutPostInput
   isLiked: Boolean
@@ -1455,7 +1561,7 @@ input PostUpdateInput {
   title: String
   subTitle: String
   user: UserUpdateOneWithoutPostsInput
-  cards: CardUpdateManyInput
+  cards: CardUpdateManyWithoutPostInput
   likes: LikeUpdateManyWithoutPostInput
   comments: CommentUpdateManyWithoutPostInput
   isLiked: Boolean
@@ -1490,6 +1596,15 @@ input PostUpdateManyWithWhereNestedInput {
   data: PostUpdateManyDataInput!
 }
 
+input PostUpdateOneWithoutCardsInput {
+  create: PostCreateWithoutCardsInput
+  update: PostUpdateWithoutCardsDataInput
+  upsert: PostUpsertWithoutCardsInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: PostWhereUniqueInput
+}
+
 input PostUpdateOneWithoutCommentsInput {
   create: PostCreateWithoutCommentsInput
   update: PostUpdateWithoutCommentsDataInput
@@ -1508,11 +1623,20 @@ input PostUpdateOneWithoutLikesInput {
   connect: PostWhereUniqueInput
 }
 
+input PostUpdateWithoutCardsDataInput {
+  title: String
+  subTitle: String
+  user: UserUpdateOneWithoutPostsInput
+  likes: LikeUpdateManyWithoutPostInput
+  comments: CommentUpdateManyWithoutPostInput
+  isLiked: Boolean
+}
+
 input PostUpdateWithoutCommentsDataInput {
   title: String
   subTitle: String
   user: UserUpdateOneWithoutPostsInput
-  cards: CardUpdateManyInput
+  cards: CardUpdateManyWithoutPostInput
   likes: LikeUpdateManyWithoutPostInput
   isLiked: Boolean
 }
@@ -1521,7 +1645,7 @@ input PostUpdateWithoutLikesDataInput {
   title: String
   subTitle: String
   user: UserUpdateOneWithoutPostsInput
-  cards: CardUpdateManyInput
+  cards: CardUpdateManyWithoutPostInput
   comments: CommentUpdateManyWithoutPostInput
   isLiked: Boolean
 }
@@ -1529,7 +1653,7 @@ input PostUpdateWithoutLikesDataInput {
 input PostUpdateWithoutUserDataInput {
   title: String
   subTitle: String
-  cards: CardUpdateManyInput
+  cards: CardUpdateManyWithoutPostInput
   likes: LikeUpdateManyWithoutPostInput
   comments: CommentUpdateManyWithoutPostInput
   isLiked: Boolean
@@ -1538,6 +1662,11 @@ input PostUpdateWithoutUserDataInput {
 input PostUpdateWithWhereUniqueWithoutUserInput {
   where: PostWhereUniqueInput!
   data: PostUpdateWithoutUserDataInput!
+}
+
+input PostUpsertWithoutCardsInput {
+  update: PostUpdateWithoutCardsDataInput!
+  create: PostCreateWithoutCardsInput!
 }
 
 input PostUpsertWithoutCommentsInput {
@@ -1658,6 +1787,7 @@ type User {
   account: String!
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
   likes(where: LikeWhereInput, orderBy: LikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Like!]
+  cards(where: CardWhereInput, orderBy: CardOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Card!]
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
 }
 
@@ -1673,7 +1803,13 @@ input UserCreateInput {
   account: String!
   posts: PostCreateManyWithoutUserInput
   likes: LikeCreateManyWithoutUserInput
+  cards: CardCreateManyWithoutUserInput
   comments: CommentCreateManyWithoutUserInput
+}
+
+input UserCreateOneWithoutCardsInput {
+  create: UserCreateWithoutCardsInput
+  connect: UserWhereUniqueInput
 }
 
 input UserCreateOneWithoutCommentsInput {
@@ -1691,12 +1827,22 @@ input UserCreateOneWithoutPostsInput {
   connect: UserWhereUniqueInput
 }
 
+input UserCreateWithoutCardsInput {
+  profilePhoto: String!
+  name: String!
+  account: String!
+  posts: PostCreateManyWithoutUserInput
+  likes: LikeCreateManyWithoutUserInput
+  comments: CommentCreateManyWithoutUserInput
+}
+
 input UserCreateWithoutCommentsInput {
   profilePhoto: String!
   name: String!
   account: String!
   posts: PostCreateManyWithoutUserInput
   likes: LikeCreateManyWithoutUserInput
+  cards: CardCreateManyWithoutUserInput
 }
 
 input UserCreateWithoutLikesInput {
@@ -1704,6 +1850,7 @@ input UserCreateWithoutLikesInput {
   name: String!
   account: String!
   posts: PostCreateManyWithoutUserInput
+  cards: CardCreateManyWithoutUserInput
   comments: CommentCreateManyWithoutUserInput
 }
 
@@ -1712,6 +1859,7 @@ input UserCreateWithoutPostsInput {
   name: String!
   account: String!
   likes: LikeCreateManyWithoutUserInput
+  cards: CardCreateManyWithoutUserInput
   comments: CommentCreateManyWithoutUserInput
 }
 
@@ -1766,6 +1914,7 @@ input UserUpdateInput {
   account: String
   posts: PostUpdateManyWithoutUserInput
   likes: LikeUpdateManyWithoutUserInput
+  cards: CardUpdateManyWithoutUserInput
   comments: CommentUpdateManyWithoutUserInput
 }
 
@@ -1773,6 +1922,15 @@ input UserUpdateManyMutationInput {
   profilePhoto: String
   name: String
   account: String
+}
+
+input UserUpdateOneWithoutCardsInput {
+  create: UserCreateWithoutCardsInput
+  update: UserUpdateWithoutCardsDataInput
+  upsert: UserUpsertWithoutCardsInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
 }
 
 input UserUpdateOneWithoutCommentsInput {
@@ -1802,12 +1960,22 @@ input UserUpdateOneWithoutPostsInput {
   connect: UserWhereUniqueInput
 }
 
+input UserUpdateWithoutCardsDataInput {
+  profilePhoto: String
+  name: String
+  account: String
+  posts: PostUpdateManyWithoutUserInput
+  likes: LikeUpdateManyWithoutUserInput
+  comments: CommentUpdateManyWithoutUserInput
+}
+
 input UserUpdateWithoutCommentsDataInput {
   profilePhoto: String
   name: String
   account: String
   posts: PostUpdateManyWithoutUserInput
   likes: LikeUpdateManyWithoutUserInput
+  cards: CardUpdateManyWithoutUserInput
 }
 
 input UserUpdateWithoutLikesDataInput {
@@ -1815,6 +1983,7 @@ input UserUpdateWithoutLikesDataInput {
   name: String
   account: String
   posts: PostUpdateManyWithoutUserInput
+  cards: CardUpdateManyWithoutUserInput
   comments: CommentUpdateManyWithoutUserInput
 }
 
@@ -1823,7 +1992,13 @@ input UserUpdateWithoutPostsDataInput {
   name: String
   account: String
   likes: LikeUpdateManyWithoutUserInput
+  cards: CardUpdateManyWithoutUserInput
   comments: CommentUpdateManyWithoutUserInput
+}
+
+input UserUpsertWithoutCardsInput {
+  update: UserUpdateWithoutCardsDataInput!
+  create: UserCreateWithoutCardsInput!
 }
 
 input UserUpsertWithoutCommentsInput {
@@ -1904,6 +2079,9 @@ input UserWhereInput {
   likes_every: LikeWhereInput
   likes_some: LikeWhereInput
   likes_none: LikeWhereInput
+  cards_every: CardWhereInput
+  cards_some: CardWhereInput
+  cards_none: CardWhereInput
   comments_every: CommentWhereInput
   comments_some: CommentWhereInput
   comments_none: CommentWhereInput

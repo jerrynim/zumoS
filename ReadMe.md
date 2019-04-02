@@ -1,18 +1,23 @@
 # ZumoServer
 
 User
-Verification Email >>Send Email
-confirm Email
-Edit User
-Facebook Login
-kakaoTalk login
-Naver login
-Google login
+
+> Create Account [o]<br/>
+> Edit User [o]<br/>
+> See User [o]<br/>
+> Social Login
 
 Post
-createPost
-seePost
-searchPost
+
+> createPost [o]<br/>
+> seeManyPost <br/>
+> seePost <br/>
+> searchPost
 
 Like
-toggleLike
+
+> toggleLike
+
+Commnet
+
+> addComment

@@ -1,7 +1,7 @@
 type Mutation {
-  createCard(files: [String!]!, title: String!, subTitle: String!, contents: [String!]!, location: String, day: String, time: String, cost: String, schedule: String, homepage: String, phoneNumber: String, park: String, info: String): Card!
+  createCard(postId: String!, files: [String!]!, title: String!, subTitle: String!, contents: [String!]!, location: String, day: String, time: String, cost: String, schedule: String, homepage: String, phoneNumber: String, park: String, info: String): Card!
   createPost(title: String!, subTitle: String!): Post!
-  createAccount(profilePhoto: String!, name: String!, account: String!): String!
+  createAccount(profilePhoto: String!, name: String!, account: String!): createAccountResponse!
   EditUser(profilePhoto: String, name: String): User!
 }
 
@@ -72,6 +72,11 @@ type Card {
   info: String
   createdAt: String
   updatedAt: String
+}
+
+type createAccountResponse {
+  user: User!
+  token: String!
 }
 
 type Query {

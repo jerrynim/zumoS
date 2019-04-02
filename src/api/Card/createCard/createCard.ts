@@ -15,9 +15,14 @@ export default {
       const files = notNull.files;
       delete notNull.files;
       delete notNull.contents;
+      delete notNull.postId;
       notNull.user = { connect: { id: user.id } };
-      const card = await prisma.createCard(notNull);
-      files.array.forEach(async (file) => {
+      console.log(notNull);
+      const card = await prisma.createCard({
+        ...notNull,
+        post: { connect: { id: args.postId } }
+      });
+      files.forEach(async (file) => {
         await prisma.createFile({
           url: file,
           card: {

@@ -1,5 +1,6 @@
 type Mutation {
   createCard(
+    postId: String!
     files: [String!]!
     title: String!
     subTitle: String!

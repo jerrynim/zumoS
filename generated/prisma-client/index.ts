@@ -315,11 +315,15 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type FileOrderByInput =
+export type PostOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "url_ASC"
-  | "url_DESC"
+  | "title_ASC"
+  | "title_DESC"
+  | "subTitle_ASC"
+  | "subTitle_DESC"
+  | "isLiked_ASC"
+  | "isLiked_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -355,20 +359,6 @@ export type CardOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
-export type PostOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "title_ASC"
-  | "title_DESC"
-  | "subTitle_ASC"
-  | "subTitle_DESC"
-  | "isLiked_ASC"
-  | "isLiked_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
 export type LikeOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -382,6 +372,16 @@ export type CommentOrderByInput =
   | "id_DESC"
   | "text_ASC"
   | "text_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type FileOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "url_ASC"
+  | "url_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -407,7 +407,7 @@ export type CardWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
 
-export interface FileWhereInput {
+export interface PostWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -422,24 +422,145 @@ export interface FileWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  url?: String;
-  url_not?: String;
-  url_in?: String[] | String;
-  url_not_in?: String[] | String;
-  url_lt?: String;
-  url_lte?: String;
-  url_gt?: String;
-  url_gte?: String;
-  url_contains?: String;
-  url_not_contains?: String;
-  url_starts_with?: String;
-  url_not_starts_with?: String;
-  url_ends_with?: String;
-  url_not_ends_with?: String;
-  card?: CardWhereInput;
-  AND?: FileWhereInput[] | FileWhereInput;
-  OR?: FileWhereInput[] | FileWhereInput;
-  NOT?: FileWhereInput[] | FileWhereInput;
+  title?: String;
+  title_not?: String;
+  title_in?: String[] | String;
+  title_not_in?: String[] | String;
+  title_lt?: String;
+  title_lte?: String;
+  title_gt?: String;
+  title_gte?: String;
+  title_contains?: String;
+  title_not_contains?: String;
+  title_starts_with?: String;
+  title_not_starts_with?: String;
+  title_ends_with?: String;
+  title_not_ends_with?: String;
+  subTitle?: String;
+  subTitle_not?: String;
+  subTitle_in?: String[] | String;
+  subTitle_not_in?: String[] | String;
+  subTitle_lt?: String;
+  subTitle_lte?: String;
+  subTitle_gt?: String;
+  subTitle_gte?: String;
+  subTitle_contains?: String;
+  subTitle_not_contains?: String;
+  subTitle_starts_with?: String;
+  subTitle_not_starts_with?: String;
+  subTitle_ends_with?: String;
+  subTitle_not_ends_with?: String;
+  user?: UserWhereInput;
+  cards_every?: CardWhereInput;
+  cards_some?: CardWhereInput;
+  cards_none?: CardWhereInput;
+  likes_every?: LikeWhereInput;
+  likes_some?: LikeWhereInput;
+  likes_none?: LikeWhereInput;
+  comments_every?: CommentWhereInput;
+  comments_some?: CommentWhereInput;
+  comments_none?: CommentWhereInput;
+  isLiked?: Boolean;
+  isLiked_not?: Boolean;
+  AND?: PostWhereInput[] | PostWhereInput;
+  OR?: PostWhereInput[] | PostWhereInput;
+  NOT?: PostWhereInput[] | PostWhereInput;
+}
+
+export interface UserWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  profilePhoto?: String;
+  profilePhoto_not?: String;
+  profilePhoto_in?: String[] | String;
+  profilePhoto_not_in?: String[] | String;
+  profilePhoto_lt?: String;
+  profilePhoto_lte?: String;
+  profilePhoto_gt?: String;
+  profilePhoto_gte?: String;
+  profilePhoto_contains?: String;
+  profilePhoto_not_contains?: String;
+  profilePhoto_starts_with?: String;
+  profilePhoto_not_starts_with?: String;
+  profilePhoto_ends_with?: String;
+  profilePhoto_not_ends_with?: String;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  account?: String;
+  account_not?: String;
+  account_in?: String[] | String;
+  account_not_in?: String[] | String;
+  account_lt?: String;
+  account_lte?: String;
+  account_gt?: String;
+  account_gte?: String;
+  account_contains?: String;
+  account_not_contains?: String;
+  account_starts_with?: String;
+  account_not_starts_with?: String;
+  account_ends_with?: String;
+  account_not_ends_with?: String;
+  posts_every?: PostWhereInput;
+  posts_some?: PostWhereInput;
+  posts_none?: PostWhereInput;
+  likes_every?: LikeWhereInput;
+  likes_some?: LikeWhereInput;
+  likes_none?: LikeWhereInput;
+  cards_every?: CardWhereInput;
+  cards_some?: CardWhereInput;
+  cards_none?: CardWhereInput;
+  comments_every?: CommentWhereInput;
+  comments_some?: CommentWhereInput;
+  comments_none?: CommentWhereInput;
+  AND?: UserWhereInput[] | UserWhereInput;
+  OR?: UserWhereInput[] | UserWhereInput;
+  NOT?: UserWhereInput[] | UserWhereInput;
+}
+
+export interface LikeWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  user?: UserWhereInput;
+  post?: PostWhereInput;
+  AND?: LikeWhereInput[] | LikeWhereInput;
+  OR?: LikeWhereInput[] | LikeWhereInput;
+  NOT?: LikeWhereInput[] | LikeWhereInput;
 }
 
 export interface CardWhereInput {
@@ -457,6 +578,8 @@ export interface CardWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  user?: UserWhereInput;
+  post?: PostWhereInput;
   files_every?: FileWhereInput;
   files_some?: FileWhereInput;
   files_none?: FileWhereInput;
@@ -619,11 +742,7 @@ export interface CardWhereInput {
   NOT?: CardWhereInput[] | CardWhereInput;
 }
 
-export type CommentWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-}>;
-
-export interface PostWhereInput {
+export interface FileWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -638,142 +757,24 @@ export interface PostWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  title?: String;
-  title_not?: String;
-  title_in?: String[] | String;
-  title_not_in?: String[] | String;
-  title_lt?: String;
-  title_lte?: String;
-  title_gt?: String;
-  title_gte?: String;
-  title_contains?: String;
-  title_not_contains?: String;
-  title_starts_with?: String;
-  title_not_starts_with?: String;
-  title_ends_with?: String;
-  title_not_ends_with?: String;
-  subTitle?: String;
-  subTitle_not?: String;
-  subTitle_in?: String[] | String;
-  subTitle_not_in?: String[] | String;
-  subTitle_lt?: String;
-  subTitle_lte?: String;
-  subTitle_gt?: String;
-  subTitle_gte?: String;
-  subTitle_contains?: String;
-  subTitle_not_contains?: String;
-  subTitle_starts_with?: String;
-  subTitle_not_starts_with?: String;
-  subTitle_ends_with?: String;
-  subTitle_not_ends_with?: String;
-  user?: UserWhereInput;
-  cards_every?: CardWhereInput;
-  cards_some?: CardWhereInput;
-  cards_none?: CardWhereInput;
-  likes_every?: LikeWhereInput;
-  likes_some?: LikeWhereInput;
-  likes_none?: LikeWhereInput;
-  comments_every?: CommentWhereInput;
-  comments_some?: CommentWhereInput;
-  comments_none?: CommentWhereInput;
-  isLiked?: Boolean;
-  isLiked_not?: Boolean;
-  AND?: PostWhereInput[] | PostWhereInput;
-  OR?: PostWhereInput[] | PostWhereInput;
-  NOT?: PostWhereInput[] | PostWhereInput;
-}
-
-export interface UserWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  profilePhoto?: String;
-  profilePhoto_not?: String;
-  profilePhoto_in?: String[] | String;
-  profilePhoto_not_in?: String[] | String;
-  profilePhoto_lt?: String;
-  profilePhoto_lte?: String;
-  profilePhoto_gt?: String;
-  profilePhoto_gte?: String;
-  profilePhoto_contains?: String;
-  profilePhoto_not_contains?: String;
-  profilePhoto_starts_with?: String;
-  profilePhoto_not_starts_with?: String;
-  profilePhoto_ends_with?: String;
-  profilePhoto_not_ends_with?: String;
-  name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
-  account?: String;
-  account_not?: String;
-  account_in?: String[] | String;
-  account_not_in?: String[] | String;
-  account_lt?: String;
-  account_lte?: String;
-  account_gt?: String;
-  account_gte?: String;
-  account_contains?: String;
-  account_not_contains?: String;
-  account_starts_with?: String;
-  account_not_starts_with?: String;
-  account_ends_with?: String;
-  account_not_ends_with?: String;
-  posts_every?: PostWhereInput;
-  posts_some?: PostWhereInput;
-  posts_none?: PostWhereInput;
-  likes_every?: LikeWhereInput;
-  likes_some?: LikeWhereInput;
-  likes_none?: LikeWhereInput;
-  comments_every?: CommentWhereInput;
-  comments_some?: CommentWhereInput;
-  comments_none?: CommentWhereInput;
-  AND?: UserWhereInput[] | UserWhereInput;
-  OR?: UserWhereInput[] | UserWhereInput;
-  NOT?: UserWhereInput[] | UserWhereInput;
-}
-
-export interface LikeWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  user?: UserWhereInput;
-  post?: PostWhereInput;
-  AND?: LikeWhereInput[] | LikeWhereInput;
-  OR?: LikeWhereInput[] | LikeWhereInput;
-  NOT?: LikeWhereInput[] | LikeWhereInput;
+  url?: String;
+  url_not?: String;
+  url_in?: String[] | String;
+  url_not_in?: String[] | String;
+  url_lt?: String;
+  url_lte?: String;
+  url_gt?: String;
+  url_gte?: String;
+  url_contains?: String;
+  url_not_contains?: String;
+  url_starts_with?: String;
+  url_not_starts_with?: String;
+  url_ends_with?: String;
+  url_not_ends_with?: String;
+  card?: CardWhereInput;
+  AND?: FileWhereInput[] | FileWhereInput;
+  OR?: FileWhereInput[] | FileWhereInput;
+  NOT?: FileWhereInput[] | FileWhereInput;
 }
 
 export interface CommentWhereInput {
@@ -812,6 +813,10 @@ export interface CommentWhereInput {
   NOT?: CommentWhereInput[] | CommentWhereInput;
 }
 
+export type CommentWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
 export type FileWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
@@ -829,6 +834,58 @@ export type UserWhereUniqueInput = AtLeastOne<{
 }>;
 
 export interface CardCreateInput {
+  user?: UserCreateOneWithoutCardsInput;
+  post?: PostCreateOneWithoutCardsInput;
+  files?: FileCreateManyWithoutCardInput;
+  title: String;
+  subTitle: String;
+  location?: String;
+  contents?: CardCreatecontentsInput;
+  day?: String;
+  time?: String;
+  cost?: String;
+  schedule?: String;
+  homepage?: String;
+  phoneNumber?: String;
+  park?: String;
+  info?: String;
+}
+
+export interface UserCreateOneWithoutCardsInput {
+  create?: UserCreateWithoutCardsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserCreateWithoutCardsInput {
+  profilePhoto: String;
+  name: String;
+  account: String;
+  posts?: PostCreateManyWithoutUserInput;
+  likes?: LikeCreateManyWithoutUserInput;
+  comments?: CommentCreateManyWithoutUserInput;
+}
+
+export interface PostCreateManyWithoutUserInput {
+  create?: PostCreateWithoutUserInput[] | PostCreateWithoutUserInput;
+  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
+}
+
+export interface PostCreateWithoutUserInput {
+  title: String;
+  subTitle: String;
+  cards?: CardCreateManyWithoutPostInput;
+  likes?: LikeCreateManyWithoutPostInput;
+  comments?: CommentCreateManyWithoutPostInput;
+  isLiked?: Boolean;
+}
+
+export interface CardCreateManyWithoutPostInput {
+  create?: CardCreateWithoutPostInput[] | CardCreateWithoutPostInput;
+  connect?: CardWhereUniqueInput[] | CardWhereUniqueInput;
+}
+
+export interface CardCreateWithoutPostInput {
+  user?: UserCreateOneWithoutCardsInput;
   files?: FileCreateManyWithoutCardInput;
   title: String;
   subTitle: String;
@@ -857,7 +914,243 @@ export interface CardCreatecontentsInput {
   set?: String[] | String;
 }
 
+export interface LikeCreateManyWithoutPostInput {
+  create?: LikeCreateWithoutPostInput[] | LikeCreateWithoutPostInput;
+  connect?: LikeWhereUniqueInput[] | LikeWhereUniqueInput;
+}
+
+export interface LikeCreateWithoutPostInput {
+  user?: UserCreateOneWithoutLikesInput;
+}
+
+export interface UserCreateOneWithoutLikesInput {
+  create?: UserCreateWithoutLikesInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserCreateWithoutLikesInput {
+  profilePhoto: String;
+  name: String;
+  account: String;
+  posts?: PostCreateManyWithoutUserInput;
+  cards?: CardCreateManyWithoutUserInput;
+  comments?: CommentCreateManyWithoutUserInput;
+}
+
+export interface CardCreateManyWithoutUserInput {
+  create?: CardCreateWithoutUserInput[] | CardCreateWithoutUserInput;
+  connect?: CardWhereUniqueInput[] | CardWhereUniqueInput;
+}
+
+export interface CardCreateWithoutUserInput {
+  post?: PostCreateOneWithoutCardsInput;
+  files?: FileCreateManyWithoutCardInput;
+  title: String;
+  subTitle: String;
+  location?: String;
+  contents?: CardCreatecontentsInput;
+  day?: String;
+  time?: String;
+  cost?: String;
+  schedule?: String;
+  homepage?: String;
+  phoneNumber?: String;
+  park?: String;
+  info?: String;
+}
+
+export interface PostCreateOneWithoutCardsInput {
+  create?: PostCreateWithoutCardsInput;
+  connect?: PostWhereUniqueInput;
+}
+
+export interface PostCreateWithoutCardsInput {
+  title: String;
+  subTitle: String;
+  user?: UserCreateOneWithoutPostsInput;
+  likes?: LikeCreateManyWithoutPostInput;
+  comments?: CommentCreateManyWithoutPostInput;
+  isLiked?: Boolean;
+}
+
+export interface UserCreateOneWithoutPostsInput {
+  create?: UserCreateWithoutPostsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserCreateWithoutPostsInput {
+  profilePhoto: String;
+  name: String;
+  account: String;
+  likes?: LikeCreateManyWithoutUserInput;
+  cards?: CardCreateManyWithoutUserInput;
+  comments?: CommentCreateManyWithoutUserInput;
+}
+
+export interface LikeCreateManyWithoutUserInput {
+  create?: LikeCreateWithoutUserInput[] | LikeCreateWithoutUserInput;
+  connect?: LikeWhereUniqueInput[] | LikeWhereUniqueInput;
+}
+
+export interface LikeCreateWithoutUserInput {
+  post?: PostCreateOneWithoutLikesInput;
+}
+
+export interface PostCreateOneWithoutLikesInput {
+  create?: PostCreateWithoutLikesInput;
+  connect?: PostWhereUniqueInput;
+}
+
+export interface PostCreateWithoutLikesInput {
+  title: String;
+  subTitle: String;
+  user?: UserCreateOneWithoutPostsInput;
+  cards?: CardCreateManyWithoutPostInput;
+  comments?: CommentCreateManyWithoutPostInput;
+  isLiked?: Boolean;
+}
+
+export interface CommentCreateManyWithoutPostInput {
+  create?: CommentCreateWithoutPostInput[] | CommentCreateWithoutPostInput;
+  connect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+}
+
+export interface CommentCreateWithoutPostInput {
+  text: String;
+  user?: UserCreateOneWithoutCommentsInput;
+}
+
+export interface UserCreateOneWithoutCommentsInput {
+  create?: UserCreateWithoutCommentsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserCreateWithoutCommentsInput {
+  profilePhoto: String;
+  name: String;
+  account: String;
+  posts?: PostCreateManyWithoutUserInput;
+  likes?: LikeCreateManyWithoutUserInput;
+  cards?: CardCreateManyWithoutUserInput;
+}
+
+export interface CommentCreateManyWithoutUserInput {
+  create?: CommentCreateWithoutUserInput[] | CommentCreateWithoutUserInput;
+  connect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+}
+
+export interface CommentCreateWithoutUserInput {
+  text: String;
+  post?: PostCreateOneWithoutCommentsInput;
+}
+
+export interface PostCreateOneWithoutCommentsInput {
+  create?: PostCreateWithoutCommentsInput;
+  connect?: PostWhereUniqueInput;
+}
+
+export interface PostCreateWithoutCommentsInput {
+  title: String;
+  subTitle: String;
+  user?: UserCreateOneWithoutPostsInput;
+  cards?: CardCreateManyWithoutPostInput;
+  likes?: LikeCreateManyWithoutPostInput;
+  isLiked?: Boolean;
+}
+
 export interface CardUpdateInput {
+  user?: UserUpdateOneWithoutCardsInput;
+  post?: PostUpdateOneWithoutCardsInput;
+  files?: FileUpdateManyWithoutCardInput;
+  title?: String;
+  subTitle?: String;
+  location?: String;
+  contents?: CardUpdatecontentsInput;
+  day?: String;
+  time?: String;
+  cost?: String;
+  schedule?: String;
+  homepage?: String;
+  phoneNumber?: String;
+  park?: String;
+  info?: String;
+}
+
+export interface UserUpdateOneWithoutCardsInput {
+  create?: UserCreateWithoutCardsInput;
+  update?: UserUpdateWithoutCardsDataInput;
+  upsert?: UserUpsertWithoutCardsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpdateWithoutCardsDataInput {
+  profilePhoto?: String;
+  name?: String;
+  account?: String;
+  posts?: PostUpdateManyWithoutUserInput;
+  likes?: LikeUpdateManyWithoutUserInput;
+  comments?: CommentUpdateManyWithoutUserInput;
+}
+
+export interface PostUpdateManyWithoutUserInput {
+  create?: PostCreateWithoutUserInput[] | PostCreateWithoutUserInput;
+  delete?: PostWhereUniqueInput[] | PostWhereUniqueInput;
+  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
+  set?: PostWhereUniqueInput[] | PostWhereUniqueInput;
+  disconnect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
+  update?:
+    | PostUpdateWithWhereUniqueWithoutUserInput[]
+    | PostUpdateWithWhereUniqueWithoutUserInput;
+  upsert?:
+    | PostUpsertWithWhereUniqueWithoutUserInput[]
+    | PostUpsertWithWhereUniqueWithoutUserInput;
+  deleteMany?: PostScalarWhereInput[] | PostScalarWhereInput;
+  updateMany?:
+    | PostUpdateManyWithWhereNestedInput[]
+    | PostUpdateManyWithWhereNestedInput;
+}
+
+export interface PostUpdateWithWhereUniqueWithoutUserInput {
+  where: PostWhereUniqueInput;
+  data: PostUpdateWithoutUserDataInput;
+}
+
+export interface PostUpdateWithoutUserDataInput {
+  title?: String;
+  subTitle?: String;
+  cards?: CardUpdateManyWithoutPostInput;
+  likes?: LikeUpdateManyWithoutPostInput;
+  comments?: CommentUpdateManyWithoutPostInput;
+  isLiked?: Boolean;
+}
+
+export interface CardUpdateManyWithoutPostInput {
+  create?: CardCreateWithoutPostInput[] | CardCreateWithoutPostInput;
+  delete?: CardWhereUniqueInput[] | CardWhereUniqueInput;
+  connect?: CardWhereUniqueInput[] | CardWhereUniqueInput;
+  set?: CardWhereUniqueInput[] | CardWhereUniqueInput;
+  disconnect?: CardWhereUniqueInput[] | CardWhereUniqueInput;
+  update?:
+    | CardUpdateWithWhereUniqueWithoutPostInput[]
+    | CardUpdateWithWhereUniqueWithoutPostInput;
+  upsert?:
+    | CardUpsertWithWhereUniqueWithoutPostInput[]
+    | CardUpsertWithWhereUniqueWithoutPostInput;
+  deleteMany?: CardScalarWhereInput[] | CardScalarWhereInput;
+  updateMany?:
+    | CardUpdateManyWithWhereNestedInput[]
+    | CardUpdateManyWithWhereNestedInput;
+}
+
+export interface CardUpdateWithWhereUniqueWithoutPostInput {
+  where: CardWhereUniqueInput;
+  data: CardUpdateWithoutPostDataInput;
+}
+
+export interface CardUpdateWithoutPostDataInput {
+  user?: UserUpdateOneWithoutCardsInput;
   files?: FileUpdateManyWithoutCardInput;
   title?: String;
   subTitle?: String;
@@ -953,249 +1246,10 @@ export interface CardUpdatecontentsInput {
   set?: String[] | String;
 }
 
-export interface CardUpdateManyMutationInput {
-  title?: String;
-  subTitle?: String;
-  location?: String;
-  contents?: CardUpdatecontentsInput;
-  day?: String;
-  time?: String;
-  cost?: String;
-  schedule?: String;
-  homepage?: String;
-  phoneNumber?: String;
-  park?: String;
-  info?: String;
-}
-
-export interface CommentCreateInput {
-  text: String;
-  user?: UserCreateOneWithoutCommentsInput;
-  post?: PostCreateOneWithoutCommentsInput;
-}
-
-export interface UserCreateOneWithoutCommentsInput {
-  create?: UserCreateWithoutCommentsInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface UserCreateWithoutCommentsInput {
-  profilePhoto: String;
-  name: String;
-  account: String;
-  posts?: PostCreateManyWithoutUserInput;
-  likes?: LikeCreateManyWithoutUserInput;
-}
-
-export interface PostCreateManyWithoutUserInput {
-  create?: PostCreateWithoutUserInput[] | PostCreateWithoutUserInput;
-  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-}
-
-export interface PostCreateWithoutUserInput {
-  title: String;
-  subTitle: String;
-  cards?: CardCreateManyInput;
-  likes?: LikeCreateManyWithoutPostInput;
-  comments?: CommentCreateManyWithoutPostInput;
-  isLiked?: Boolean;
-}
-
-export interface CardCreateManyInput {
-  create?: CardCreateInput[] | CardCreateInput;
-  connect?: CardWhereUniqueInput[] | CardWhereUniqueInput;
-}
-
-export interface LikeCreateManyWithoutPostInput {
-  create?: LikeCreateWithoutPostInput[] | LikeCreateWithoutPostInput;
-  connect?: LikeWhereUniqueInput[] | LikeWhereUniqueInput;
-}
-
-export interface LikeCreateWithoutPostInput {
-  user?: UserCreateOneWithoutLikesInput;
-}
-
-export interface UserCreateOneWithoutLikesInput {
-  create?: UserCreateWithoutLikesInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface UserCreateWithoutLikesInput {
-  profilePhoto: String;
-  name: String;
-  account: String;
-  posts?: PostCreateManyWithoutUserInput;
-  comments?: CommentCreateManyWithoutUserInput;
-}
-
-export interface CommentCreateManyWithoutUserInput {
-  create?: CommentCreateWithoutUserInput[] | CommentCreateWithoutUserInput;
-  connect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
-}
-
-export interface CommentCreateWithoutUserInput {
-  text: String;
-  post?: PostCreateOneWithoutCommentsInput;
-}
-
-export interface PostCreateOneWithoutCommentsInput {
-  create?: PostCreateWithoutCommentsInput;
-  connect?: PostWhereUniqueInput;
-}
-
-export interface PostCreateWithoutCommentsInput {
-  title: String;
-  subTitle: String;
-  user?: UserCreateOneWithoutPostsInput;
-  cards?: CardCreateManyInput;
-  likes?: LikeCreateManyWithoutPostInput;
-  isLiked?: Boolean;
-}
-
-export interface UserCreateOneWithoutPostsInput {
-  create?: UserCreateWithoutPostsInput;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface UserCreateWithoutPostsInput {
-  profilePhoto: String;
-  name: String;
-  account: String;
-  likes?: LikeCreateManyWithoutUserInput;
-  comments?: CommentCreateManyWithoutUserInput;
-}
-
-export interface LikeCreateManyWithoutUserInput {
-  create?: LikeCreateWithoutUserInput[] | LikeCreateWithoutUserInput;
-  connect?: LikeWhereUniqueInput[] | LikeWhereUniqueInput;
-}
-
-export interface LikeCreateWithoutUserInput {
-  post?: PostCreateOneWithoutLikesInput;
-}
-
-export interface PostCreateOneWithoutLikesInput {
-  create?: PostCreateWithoutLikesInput;
-  connect?: PostWhereUniqueInput;
-}
-
-export interface PostCreateWithoutLikesInput {
-  title: String;
-  subTitle: String;
-  user?: UserCreateOneWithoutPostsInput;
-  cards?: CardCreateManyInput;
-  comments?: CommentCreateManyWithoutPostInput;
-  isLiked?: Boolean;
-}
-
-export interface CommentCreateManyWithoutPostInput {
-  create?: CommentCreateWithoutPostInput[] | CommentCreateWithoutPostInput;
-  connect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
-}
-
-export interface CommentCreateWithoutPostInput {
-  text: String;
-  user?: UserCreateOneWithoutCommentsInput;
-}
-
-export interface CommentUpdateInput {
-  text?: String;
-  user?: UserUpdateOneWithoutCommentsInput;
-  post?: PostUpdateOneWithoutCommentsInput;
-}
-
-export interface UserUpdateOneWithoutCommentsInput {
-  create?: UserCreateWithoutCommentsInput;
-  update?: UserUpdateWithoutCommentsDataInput;
-  upsert?: UserUpsertWithoutCommentsInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: UserWhereUniqueInput;
-}
-
-export interface UserUpdateWithoutCommentsDataInput {
-  profilePhoto?: String;
-  name?: String;
-  account?: String;
-  posts?: PostUpdateManyWithoutUserInput;
-  likes?: LikeUpdateManyWithoutUserInput;
-}
-
-export interface PostUpdateManyWithoutUserInput {
-  create?: PostCreateWithoutUserInput[] | PostCreateWithoutUserInput;
-  delete?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-  connect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-  set?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-  disconnect?: PostWhereUniqueInput[] | PostWhereUniqueInput;
-  update?:
-    | PostUpdateWithWhereUniqueWithoutUserInput[]
-    | PostUpdateWithWhereUniqueWithoutUserInput;
-  upsert?:
-    | PostUpsertWithWhereUniqueWithoutUserInput[]
-    | PostUpsertWithWhereUniqueWithoutUserInput;
-  deleteMany?: PostScalarWhereInput[] | PostScalarWhereInput;
-  updateMany?:
-    | PostUpdateManyWithWhereNestedInput[]
-    | PostUpdateManyWithWhereNestedInput;
-}
-
-export interface PostUpdateWithWhereUniqueWithoutUserInput {
-  where: PostWhereUniqueInput;
-  data: PostUpdateWithoutUserDataInput;
-}
-
-export interface PostUpdateWithoutUserDataInput {
-  title?: String;
-  subTitle?: String;
-  cards?: CardUpdateManyInput;
-  likes?: LikeUpdateManyWithoutPostInput;
-  comments?: CommentUpdateManyWithoutPostInput;
-  isLiked?: Boolean;
-}
-
-export interface CardUpdateManyInput {
-  create?: CardCreateInput[] | CardCreateInput;
-  update?:
-    | CardUpdateWithWhereUniqueNestedInput[]
-    | CardUpdateWithWhereUniqueNestedInput;
-  upsert?:
-    | CardUpsertWithWhereUniqueNestedInput[]
-    | CardUpsertWithWhereUniqueNestedInput;
-  delete?: CardWhereUniqueInput[] | CardWhereUniqueInput;
-  connect?: CardWhereUniqueInput[] | CardWhereUniqueInput;
-  set?: CardWhereUniqueInput[] | CardWhereUniqueInput;
-  disconnect?: CardWhereUniqueInput[] | CardWhereUniqueInput;
-  deleteMany?: CardScalarWhereInput[] | CardScalarWhereInput;
-  updateMany?:
-    | CardUpdateManyWithWhereNestedInput[]
-    | CardUpdateManyWithWhereNestedInput;
-}
-
-export interface CardUpdateWithWhereUniqueNestedInput {
+export interface CardUpsertWithWhereUniqueWithoutPostInput {
   where: CardWhereUniqueInput;
-  data: CardUpdateDataInput;
-}
-
-export interface CardUpdateDataInput {
-  files?: FileUpdateManyWithoutCardInput;
-  title?: String;
-  subTitle?: String;
-  location?: String;
-  contents?: CardUpdatecontentsInput;
-  day?: String;
-  time?: String;
-  cost?: String;
-  schedule?: String;
-  homepage?: String;
-  phoneNumber?: String;
-  park?: String;
-  info?: String;
-}
-
-export interface CardUpsertWithWhereUniqueNestedInput {
-  where: CardWhereUniqueInput;
-  update: CardUpdateDataInput;
-  create: CardCreateInput;
+  update: CardUpdateWithoutPostDataInput;
+  create: CardCreateWithoutPostInput;
 }
 
 export interface CardScalarWhereInput {
@@ -1430,52 +1484,65 @@ export interface UserUpdateWithoutLikesDataInput {
   name?: String;
   account?: String;
   posts?: PostUpdateManyWithoutUserInput;
+  cards?: CardUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
 }
 
-export interface CommentUpdateManyWithoutUserInput {
-  create?: CommentCreateWithoutUserInput[] | CommentCreateWithoutUserInput;
-  delete?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
-  connect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
-  set?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
-  disconnect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+export interface CardUpdateManyWithoutUserInput {
+  create?: CardCreateWithoutUserInput[] | CardCreateWithoutUserInput;
+  delete?: CardWhereUniqueInput[] | CardWhereUniqueInput;
+  connect?: CardWhereUniqueInput[] | CardWhereUniqueInput;
+  set?: CardWhereUniqueInput[] | CardWhereUniqueInput;
+  disconnect?: CardWhereUniqueInput[] | CardWhereUniqueInput;
   update?:
-    | CommentUpdateWithWhereUniqueWithoutUserInput[]
-    | CommentUpdateWithWhereUniqueWithoutUserInput;
+    | CardUpdateWithWhereUniqueWithoutUserInput[]
+    | CardUpdateWithWhereUniqueWithoutUserInput;
   upsert?:
-    | CommentUpsertWithWhereUniqueWithoutUserInput[]
-    | CommentUpsertWithWhereUniqueWithoutUserInput;
-  deleteMany?: CommentScalarWhereInput[] | CommentScalarWhereInput;
+    | CardUpsertWithWhereUniqueWithoutUserInput[]
+    | CardUpsertWithWhereUniqueWithoutUserInput;
+  deleteMany?: CardScalarWhereInput[] | CardScalarWhereInput;
   updateMany?:
-    | CommentUpdateManyWithWhereNestedInput[]
-    | CommentUpdateManyWithWhereNestedInput;
+    | CardUpdateManyWithWhereNestedInput[]
+    | CardUpdateManyWithWhereNestedInput;
 }
 
-export interface CommentUpdateWithWhereUniqueWithoutUserInput {
-  where: CommentWhereUniqueInput;
-  data: CommentUpdateWithoutUserDataInput;
+export interface CardUpdateWithWhereUniqueWithoutUserInput {
+  where: CardWhereUniqueInput;
+  data: CardUpdateWithoutUserDataInput;
 }
 
-export interface CommentUpdateWithoutUserDataInput {
-  text?: String;
-  post?: PostUpdateOneWithoutCommentsInput;
+export interface CardUpdateWithoutUserDataInput {
+  post?: PostUpdateOneWithoutCardsInput;
+  files?: FileUpdateManyWithoutCardInput;
+  title?: String;
+  subTitle?: String;
+  location?: String;
+  contents?: CardUpdatecontentsInput;
+  day?: String;
+  time?: String;
+  cost?: String;
+  schedule?: String;
+  homepage?: String;
+  phoneNumber?: String;
+  park?: String;
+  info?: String;
 }
 
-export interface PostUpdateOneWithoutCommentsInput {
-  create?: PostCreateWithoutCommentsInput;
-  update?: PostUpdateWithoutCommentsDataInput;
-  upsert?: PostUpsertWithoutCommentsInput;
+export interface PostUpdateOneWithoutCardsInput {
+  create?: PostCreateWithoutCardsInput;
+  update?: PostUpdateWithoutCardsDataInput;
+  upsert?: PostUpsertWithoutCardsInput;
   delete?: Boolean;
   disconnect?: Boolean;
   connect?: PostWhereUniqueInput;
 }
 
-export interface PostUpdateWithoutCommentsDataInput {
+export interface PostUpdateWithoutCardsDataInput {
   title?: String;
   subTitle?: String;
   user?: UserUpdateOneWithoutPostsInput;
-  cards?: CardUpdateManyInput;
   likes?: LikeUpdateManyWithoutPostInput;
+  comments?: CommentUpdateManyWithoutPostInput;
   isLiked?: Boolean;
 }
 
@@ -1493,6 +1560,7 @@ export interface UserUpdateWithoutPostsDataInput {
   name?: String;
   account?: String;
   likes?: LikeUpdateManyWithoutUserInput;
+  cards?: CardUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
 }
 
@@ -1533,7 +1601,7 @@ export interface PostUpdateWithoutLikesDataInput {
   title?: String;
   subTitle?: String;
   user?: UserUpdateOneWithoutPostsInput;
-  cards?: CardUpdateManyInput;
+  cards?: CardUpdateManyWithoutPostInput;
   comments?: CommentUpdateManyWithoutPostInput;
   isLiked?: Boolean;
 }
@@ -1564,6 +1632,29 @@ export interface CommentUpdateWithWhereUniqueWithoutPostInput {
 export interface CommentUpdateWithoutPostDataInput {
   text?: String;
   user?: UserUpdateOneWithoutCommentsInput;
+}
+
+export interface UserUpdateOneWithoutCommentsInput {
+  create?: UserCreateWithoutCommentsInput;
+  update?: UserUpdateWithoutCommentsDataInput;
+  upsert?: UserUpsertWithoutCommentsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpdateWithoutCommentsDataInput {
+  profilePhoto?: String;
+  name?: String;
+  account?: String;
+  posts?: PostUpdateManyWithoutUserInput;
+  likes?: LikeUpdateManyWithoutUserInput;
+  cards?: CardUpdateManyWithoutUserInput;
+}
+
+export interface UserUpsertWithoutCommentsInput {
+  update: UserUpdateWithoutCommentsDataInput;
+  create: UserCreateWithoutCommentsInput;
 }
 
 export interface CommentUpsertWithWhereUniqueWithoutPostInput {
@@ -1646,9 +1737,50 @@ export interface LikeScalarWhereInput {
   NOT?: LikeScalarWhereInput[] | LikeScalarWhereInput;
 }
 
-export interface UserUpsertWithoutPostsInput {
-  update: UserUpdateWithoutPostsDataInput;
-  create: UserCreateWithoutPostsInput;
+export interface CommentUpdateManyWithoutUserInput {
+  create?: CommentCreateWithoutUserInput[] | CommentCreateWithoutUserInput;
+  delete?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+  connect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+  set?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+  disconnect?: CommentWhereUniqueInput[] | CommentWhereUniqueInput;
+  update?:
+    | CommentUpdateWithWhereUniqueWithoutUserInput[]
+    | CommentUpdateWithWhereUniqueWithoutUserInput;
+  upsert?:
+    | CommentUpsertWithWhereUniqueWithoutUserInput[]
+    | CommentUpsertWithWhereUniqueWithoutUserInput;
+  deleteMany?: CommentScalarWhereInput[] | CommentScalarWhereInput;
+  updateMany?:
+    | CommentUpdateManyWithWhereNestedInput[]
+    | CommentUpdateManyWithWhereNestedInput;
+}
+
+export interface CommentUpdateWithWhereUniqueWithoutUserInput {
+  where: CommentWhereUniqueInput;
+  data: CommentUpdateWithoutUserDataInput;
+}
+
+export interface CommentUpdateWithoutUserDataInput {
+  text?: String;
+  post?: PostUpdateOneWithoutCommentsInput;
+}
+
+export interface PostUpdateOneWithoutCommentsInput {
+  create?: PostCreateWithoutCommentsInput;
+  update?: PostUpdateWithoutCommentsDataInput;
+  upsert?: PostUpsertWithoutCommentsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: PostWhereUniqueInput;
+}
+
+export interface PostUpdateWithoutCommentsDataInput {
+  title?: String;
+  subTitle?: String;
+  user?: UserUpdateOneWithoutPostsInput;
+  cards?: CardUpdateManyWithoutPostInput;
+  likes?: LikeUpdateManyWithoutPostInput;
+  isLiked?: Boolean;
 }
 
 export interface PostUpsertWithoutCommentsInput {
@@ -1660,6 +1792,22 @@ export interface CommentUpsertWithWhereUniqueWithoutUserInput {
   where: CommentWhereUniqueInput;
   update: CommentUpdateWithoutUserDataInput;
   create: CommentCreateWithoutUserInput;
+}
+
+export interface UserUpsertWithoutPostsInput {
+  update: UserUpdateWithoutPostsDataInput;
+  create: UserCreateWithoutPostsInput;
+}
+
+export interface PostUpsertWithoutCardsInput {
+  update: PostUpdateWithoutCardsDataInput;
+  create: PostCreateWithoutCardsInput;
+}
+
+export interface CardUpsertWithWhereUniqueWithoutUserInput {
+  where: CardWhereUniqueInput;
+  update: CardUpdateWithoutUserDataInput;
+  create: CardCreateWithoutUserInput;
 }
 
 export interface UserUpsertWithoutLikesInput {
@@ -1740,9 +1888,36 @@ export interface PostUpdateManyDataInput {
   isLiked?: Boolean;
 }
 
-export interface UserUpsertWithoutCommentsInput {
-  update: UserUpdateWithoutCommentsDataInput;
-  create: UserCreateWithoutCommentsInput;
+export interface UserUpsertWithoutCardsInput {
+  update: UserUpdateWithoutCardsDataInput;
+  create: UserCreateWithoutCardsInput;
+}
+
+export interface CardUpdateManyMutationInput {
+  title?: String;
+  subTitle?: String;
+  location?: String;
+  contents?: CardUpdatecontentsInput;
+  day?: String;
+  time?: String;
+  cost?: String;
+  schedule?: String;
+  homepage?: String;
+  phoneNumber?: String;
+  park?: String;
+  info?: String;
+}
+
+export interface CommentCreateInput {
+  text: String;
+  user?: UserCreateOneWithoutCommentsInput;
+  post?: PostCreateOneWithoutCommentsInput;
+}
+
+export interface CommentUpdateInput {
+  text?: String;
+  user?: UserUpdateOneWithoutCommentsInput;
+  post?: PostUpdateOneWithoutCommentsInput;
 }
 
 export interface CommentUpdateManyMutationInput {
@@ -1760,6 +1935,8 @@ export interface CardCreateOneWithoutFilesInput {
 }
 
 export interface CardCreateWithoutFilesInput {
+  user?: UserCreateOneWithoutCardsInput;
+  post?: PostCreateOneWithoutCardsInput;
   title: String;
   subTitle: String;
   location?: String;
@@ -1789,6 +1966,8 @@ export interface CardUpdateOneWithoutFilesInput {
 }
 
 export interface CardUpdateWithoutFilesDataInput {
+  user?: UserUpdateOneWithoutCardsInput;
+  post?: PostUpdateOneWithoutCardsInput;
   title?: String;
   subTitle?: String;
   location?: String;
@@ -1826,7 +2005,7 @@ export interface PostCreateInput {
   title: String;
   subTitle: String;
   user?: UserCreateOneWithoutPostsInput;
-  cards?: CardCreateManyInput;
+  cards?: CardCreateManyWithoutPostInput;
   likes?: LikeCreateManyWithoutPostInput;
   comments?: CommentCreateManyWithoutPostInput;
   isLiked?: Boolean;
@@ -1836,7 +2015,7 @@ export interface PostUpdateInput {
   title?: String;
   subTitle?: String;
   user?: UserUpdateOneWithoutPostsInput;
-  cards?: CardUpdateManyInput;
+  cards?: CardUpdateManyWithoutPostInput;
   likes?: LikeUpdateManyWithoutPostInput;
   comments?: CommentUpdateManyWithoutPostInput;
   isLiked?: Boolean;
@@ -1854,6 +2033,7 @@ export interface UserCreateInput {
   account: String;
   posts?: PostCreateManyWithoutUserInput;
   likes?: LikeCreateManyWithoutUserInput;
+  cards?: CardCreateManyWithoutUserInput;
   comments?: CommentCreateManyWithoutUserInput;
 }
 
@@ -1863,6 +2043,7 @@ export interface UserUpdateInput {
   account?: String;
   posts?: PostUpdateManyWithoutUserInput;
   likes?: LikeUpdateManyWithoutUserInput;
+  cards?: CardUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
 }
 
@@ -1960,6 +2141,8 @@ export interface Card {
 
 export interface CardPromise extends Promise<Card>, Fragmentable {
   id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  post: <T = PostPromise>() => T;
   files: <T = FragmentableArray<File>>(
     args?: {
       where?: FileWhereInput;
@@ -1989,6 +2172,8 @@ export interface CardSubscription
   extends Promise<AsyncIterator<Card>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  post: <T = PostSubscription>() => T;
   files: <T = Promise<AsyncIterator<FileSubscription>>>(
     args?: {
       where?: FileWhereInput;
@@ -2012,123 +2197,6 @@ export interface CardSubscription
   phoneNumber: () => Promise<AsyncIterator<String>>;
   park: () => Promise<AsyncIterator<String>>;
   info: () => Promise<AsyncIterator<String>>;
-}
-
-export interface File {
-  id: ID_Output;
-  url: String;
-}
-
-export interface FilePromise extends Promise<File>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  url: () => Promise<String>;
-  card: <T = CardPromise>() => T;
-}
-
-export interface FileSubscription
-  extends Promise<AsyncIterator<File>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  url: () => Promise<AsyncIterator<String>>;
-  card: <T = CardSubscription>() => T;
-}
-
-export interface CardConnection {
-  pageInfo: PageInfo;
-  edges: CardEdge[];
-}
-
-export interface CardConnectionPromise
-  extends Promise<CardConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<CardEdge>>() => T;
-  aggregate: <T = AggregateCardPromise>() => T;
-}
-
-export interface CardConnectionSubscription
-  extends Promise<AsyncIterator<CardConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<CardEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateCardSubscription>() => T;
-}
-
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface CardEdge {
-  node: Card;
-  cursor: String;
-}
-
-export interface CardEdgePromise extends Promise<CardEdge>, Fragmentable {
-  node: <T = CardPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface CardEdgeSubscription
-  extends Promise<AsyncIterator<CardEdge>>,
-    Fragmentable {
-  node: <T = CardSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateCard {
-  count: Int;
-}
-
-export interface AggregateCardPromise
-  extends Promise<AggregateCard>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateCardSubscription
-  extends Promise<AsyncIterator<AggregateCard>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface Comment {
-  id: ID_Output;
-  text: String;
-}
-
-export interface CommentPromise extends Promise<Comment>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  text: () => Promise<String>;
-  user: <T = UserPromise>() => T;
-  post: <T = PostPromise>() => T;
-}
-
-export interface CommentSubscription
-  extends Promise<AsyncIterator<Comment>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  text: () => Promise<AsyncIterator<String>>;
-  user: <T = UserSubscription>() => T;
-  post: <T = PostSubscription>() => T;
 }
 
 export interface User {
@@ -2158,6 +2226,17 @@ export interface UserPromise extends Promise<User>, Fragmentable {
     args?: {
       where?: LikeWhereInput;
       orderBy?: LikeOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  cards: <T = FragmentableArray<Card>>(
+    args?: {
+      where?: CardWhereInput;
+      orderBy?: CardOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
@@ -2200,6 +2279,17 @@ export interface UserSubscription
     args?: {
       where?: LikeWhereInput;
       orderBy?: LikeOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  cards: <T = Promise<AsyncIterator<CardSubscription>>>(
+    args?: {
+      where?: CardWhereInput;
+      orderBy?: CardOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
@@ -2327,6 +2417,123 @@ export interface LikeSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   user: <T = UserSubscription>() => T;
   post: <T = PostSubscription>() => T;
+}
+
+export interface Comment {
+  id: ID_Output;
+  text: String;
+}
+
+export interface CommentPromise extends Promise<Comment>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  text: () => Promise<String>;
+  user: <T = UserPromise>() => T;
+  post: <T = PostPromise>() => T;
+}
+
+export interface CommentSubscription
+  extends Promise<AsyncIterator<Comment>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  text: () => Promise<AsyncIterator<String>>;
+  user: <T = UserSubscription>() => T;
+  post: <T = PostSubscription>() => T;
+}
+
+export interface File {
+  id: ID_Output;
+  url: String;
+}
+
+export interface FilePromise extends Promise<File>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  url: () => Promise<String>;
+  card: <T = CardPromise>() => T;
+}
+
+export interface FileSubscription
+  extends Promise<AsyncIterator<File>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  url: () => Promise<AsyncIterator<String>>;
+  card: <T = CardSubscription>() => T;
+}
+
+export interface CardConnection {
+  pageInfo: PageInfo;
+  edges: CardEdge[];
+}
+
+export interface CardConnectionPromise
+  extends Promise<CardConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<CardEdge>>() => T;
+  aggregate: <T = AggregateCardPromise>() => T;
+}
+
+export interface CardConnectionSubscription
+  extends Promise<AsyncIterator<CardConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CardEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCardSubscription>() => T;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CardEdge {
+  node: Card;
+  cursor: String;
+}
+
+export interface CardEdgePromise extends Promise<CardEdge>, Fragmentable {
+  node: <T = CardPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface CardEdgeSubscription
+  extends Promise<AsyncIterator<CardEdge>>,
+    Fragmentable {
+  node: <T = CardSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateCard {
+  count: Int;
+}
+
+export interface AggregateCardPromise
+  extends Promise<AggregateCard>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateCardSubscription
+  extends Promise<AsyncIterator<AggregateCard>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface CommentConnection {
@@ -2933,14 +3140,14 @@ The `String` scalar type represents textual data, represented as UTF-8 character
 export type String = string;
 
 /*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
-*/
-export type Int = number;
-
-/*
 The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean;
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
+*/
+export type Int = number;
 
 export type Long = string;
 
