@@ -5,7 +5,6 @@ type User {
   account: String!
   posts: [Post!]!
   likes: [Like!]!
-  comments: [Comment!]!
   createdAt: String
   updatedAt: String
 }

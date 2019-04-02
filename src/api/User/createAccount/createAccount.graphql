@@ -1,3 +1,12 @@
+type createAccountResponse {
+  user: User!
+  token: String!
+}
+
 type Mutation {
-  createAccount(profilePhoto: String!, name: String!, account: String!): User!
+  createAccount(
+    profilePhoto: String!
+    name: String!
+    account: String!
+  ): createAccountResponse!
 }
