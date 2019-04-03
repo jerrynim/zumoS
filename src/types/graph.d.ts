@@ -1,23 +1,23 @@
-export const typeDefs = ["type Mutation {\n  createCard(postId: String!, files: [String!]!, title: String!, subTitle: String!, contents: [String!]!, location: String, day: String, time: String, cost: String, schedule: String, homepage: String, phoneNumber: String, park: String, info: String): Card!\n  createPost(title: String!, subTitle: String!): Post!\n  createAccount(profilePhoto: String!, name: String!, account: String!): createAccountResponse!\n  EditUser(profilePhoto: String, name: String): User!\n}\n\ntype User {\n  id: ID!\n  profilePhoto: String!\n  name: String!\n  account: String!\n  posts: [Post!]!\n  likes: [Like!]!\n  createdAt: String\n  updatedAt: String\n}\n\ntype Post {\n  id: ID!\n  title: String!\n  subTitle: String!\n  user: User\n  cards: [Card!]!\n  likes: [Like!]!\n  comments: [Comment!]!\n  isLiked: Boolean\n  likeCount: Int!\n  createdAt: String\n  updatedAt: String\n}\n\ntype Like {\n  id: ID!\n  user: User\n  post: Post\n  createdAt: String\n  updatedAt: String\n}\n\ntype Comment {\n  id: ID!\n  text: String!\n  user: User\n  post: Post\n  createdAt: String\n  updatedAt: String\n}\n\ntype File {\n  id: ID!\n  url: String!\n  card: Card\n  createdAt: String\n  updatedAt: String\n}\n\ntype Card {\n  id: ID!\n  files: [File!]!\n  title: String!\n  subTitle: String!\n  location: String\n  contents: [String!]!\n  day: String\n  time: String\n  cost: String\n  schedule: String\n  homepage: String\n  phoneNumber: String\n  park: String\n  info: String\n  createdAt: String\n  updatedAt: String\n}\n\ntype createAccountResponse {\n  user: User!\n  token: String!\n}\n\ntype Query {\n  seeUser(id: String!): User!\n}\n"];
+export const typeDefs = ["type Mutation {\n  createCard(postId: String!, files: [String!]!, title: String!, subTitle: String!, contents: [String!]!, location: String, day: String, time: String, cost: String, schedule: String, homepage: String, phoneNumber: String, park: String, info: String): Card!\n  createPost(title: String!, subTitle: String!): Post!\n  createAccount(profilePhoto: String!, name: String!, account: String!): createAccountResponse!\n  EditUser(profilePhoto: String, name: String): User!\n}\n\ntype User {\n  id: ID!\n  profilePhoto: String!\n  name: String!\n  account: String!\n  posts: [Post!]!\n  likes: [Like!]!\n  cards: [Card!]!\n  createdAt: String\n  updatedAt: String\n}\n\ntype Post {\n  id: ID!\n  title: String!\n  subTitle: String!\n  user: User\n  cards: [Card!]!\n  likes: [Like!]!\n  comments: [Comment!]!\n  isLiked: Boolean\n  likeCount: Int!\n  createdAt: String\n  updatedAt: String\n}\n\ntype Like {\n  id: ID!\n  user: User\n  post: Post\n  createdAt: String\n  updatedAt: String\n}\n\ntype Comment {\n  id: ID!\n  text: String!\n  user: User\n  post: Post\n  createdAt: String\n  updatedAt: String\n}\n\ntype File {\n  id: ID!\n  url: String!\n  card: Card\n  createdAt: String\n  updatedAt: String\n}\n\ntype Card {\n  id: ID!\n  user: User!\n  post: Post!\n  files: [File!]!\n  title: String!\n  subTitle: String!\n  location: String\n  contents: [String!]!\n  day: String\n  time: String\n  cost: String\n  schedule: String\n  homepage: String\n  phoneNumber: String\n  park: String\n  info: String\n  createdAt: String\n  updatedAt: String\n}\n\ntype Query {\n  SearchPost(term: String!): Post!\n  seePost(id: String!): Post!\n  seePosts: [Post!]!\n  seeUser(id: String!): User!\n}\n\ntype createAccountResponse {\n  user: User!\n  token: String!\n}\n"];
 /* tslint:disable */
 
 export interface Query {
+  SearchPost: Post;
+  seePost: Post;
+  seePosts: Array<Post>;
   seeUser: User;
+}
+
+export interface SearchPostQueryArgs {
+  term: string;
+}
+
+export interface SeePostQueryArgs {
+  id: string;
 }
 
 export interface SeeUserQueryArgs {
   id: string;
-}
-
-export interface User {
-  id: string;
-  profilePhoto: string;
-  name: string;
-  account: string;
-  posts: Array<Post>;
-  likes: Array<Like>;
-  createdAt: string | null;
-  updatedAt: string | null;
 }
 
 export interface Post {
@@ -34,8 +34,30 @@ export interface Post {
   updatedAt: string | null;
 }
 
+export interface User {
+  id: string;
+  profilePhoto: string;
+  name: string;
+  account: string;
+  posts: Array<Post>;
+  likes: Array<Like>;
+  cards: Array<Card>;
+  createdAt: string | null;
+  updatedAt: string | null;
+}
+
+export interface Like {
+  id: string;
+  user: User | null;
+  post: Post | null;
+  createdAt: string | null;
+  updatedAt: string | null;
+}
+
 export interface Card {
   id: string;
+  user: User;
+  post: Post;
   files: Array<File>;
   title: string;
   subTitle: string;
@@ -57,14 +79,6 @@ export interface File {
   id: string;
   url: string;
   card: Card | null;
-  createdAt: string | null;
-  updatedAt: string | null;
-}
-
-export interface Like {
-  id: string;
-  user: User | null;
-  post: Post | null;
   createdAt: string | null;
   updatedAt: string | null;
 }

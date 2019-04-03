@@ -10,9 +10,9 @@ User
 Post
 
 > createPost [o]<br/>
-> seeManyPost <br/>
-> seePost <br/>
-> searchPost
+> getPosts [o]<br/>
+> getPost [o]<br/>
+> searchPost[o]
 
 Like
 

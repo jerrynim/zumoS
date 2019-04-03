@@ -12,6 +12,7 @@ type User {
   account: String!
   posts: [Post!]!
   likes: [Like!]!
+  cards: [Card!]!
   createdAt: String
   updatedAt: String
 }
@@ -57,6 +58,8 @@ type File {
 
 type Card {
   id: ID!
+  user: User!
+  post: Post!
   files: [File!]!
   title: String!
   subTitle: String!
@@ -74,11 +77,14 @@ type Card {
   updatedAt: String
 }
 
+type Query {
+  SearchPost(term: String!): Post!
+  seePost(id: String!): Post!
+  seePosts: [Post!]!
+  seeUser(id: String!): User!
+}
+
 type createAccountResponse {
   user: User!
   token: String!
-}
-
-type Query {
-  seeUser(id: String!): User!
 }
