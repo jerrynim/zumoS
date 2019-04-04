@@ -16,8 +16,8 @@ Post
 
 Like
 
-> toggleLike
+> toggleLike[o]
 
 Commnet
 
-> addComment
+> addComment[o]
