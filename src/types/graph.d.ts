@@ -1,4 +1,4 @@
-export const typeDefs = ["type Mutation {\n  createCard(postId: String!, files: [String!]!, title: String!, subTitle: String!, contents: [String!]!, location: String, day: String, time: String, cost: String, schedule: String, homepage: String, phoneNumber: String, park: String, info: String): Card!\n  addComment(text: String!, postId: String!): Comment!\n  toggleLike(postId: String!): Boolean!\n  createPost(title: String!, subTitle: String!): Post!\n  createAccount(profilePhoto: String!, name: String!, account: String!): createAccountResponse!\n  EditUser(profilePhoto: String, name: String): User!\n}\n\ntype User {\n  id: ID!\n  profilePhoto: String!\n  name: String!\n  account: String!\n  posts: [Post!]!\n  likes: [Like!]!\n  cards: [Card!]!\n  createdAt: String\n  updatedAt: String\n}\n\ntype Post {\n  id: ID!\n  title: String!\n  subTitle: String!\n  user: User\n  cards: [Card!]!\n  likes: [Like!]!\n  comments: [Comment!]!\n  isLiked: Boolean\n  likeCount: Int!\n  createdAt: String\n  updatedAt: String\n}\n\ntype Like {\n  id: ID!\n  user: User\n  post: Post\n  createdAt: String\n  updatedAt: String\n}\n\ntype Comment {\n  id: ID!\n  text: String!\n  user: User\n  post: Post\n  createdAt: String\n  updatedAt: String\n}\n\ntype File {\n  id: ID!\n  url: String!\n  card: Card\n  createdAt: String\n  updatedAt: String\n}\n\ntype Card {\n  id: ID!\n  user: User!\n  post: Post!\n  files: [File!]!\n  title: String!\n  subTitle: String!\n  location: String\n  contents: [String!]!\n  day: String\n  time: String\n  cost: String\n  schedule: String\n  homepage: String\n  phoneNumber: String\n  park: String\n  info: String\n  createdAt: String\n  updatedAt: String\n}\n\ntype Query {\n  SearchPost(term: String!): Post!\n  seePost(id: String!): Post!\n  seePosts: [Post!]!\n  seeUser(id: String!): User!\n}\n\ntype createAccountResponse {\n  user: User!\n  token: String!\n}\n"];
+export const typeDefs = ["type Mutation {\n  createCard(postId: String!, files: [String!]!, title: String!, subTitle: String!, contents: [String!]!, location: String, day: String, time: String, cost: String, schedule: String, homepage: String, phoneNumber: String, park: String, info: String): Card!\n  addComment(text: String!, postId: String!): Comment!\n  deleteComment(commentId: String!): Boolean!\n  toggleLike(postId: String!): Boolean!\n  createPost(title: String!, subTitle: String!): Post!\n  createAccount(profilePhoto: String!, name: String!, account: String!): createAccountResponse!\n  EditUser(profilePhoto: String, name: String): User!\n}\n\ntype User {\n  id: ID!\n  profilePhoto: String!\n  name: String!\n  account: String!\n  posts: [Post!]!\n  likes: [Like!]!\n  cards: [Card!]!\n  createdAt: String\n  updatedAt: String\n}\n\ntype Post {\n  id: ID!\n  title: String!\n  subTitle: String!\n  user: User\n  cards: [Card!]!\n  likes: [Like!]!\n  comments: [Comment!]!\n  isLiked: Boolean\n  likeCount: Int!\n  createdAt: String\n  updatedAt: String\n}\n\ntype Like {\n  id: ID!\n  user: User\n  post: Post\n  createdAt: String\n  updatedAt: String\n}\n\ntype Comment {\n  id: ID!\n  text: String!\n  user: User\n  post: Post\n  createdAt: String\n  updatedAt: String\n}\n\ntype File {\n  id: ID!\n  url: String!\n  card: Card\n  createdAt: String\n  updatedAt: String\n}\n\ntype Card {\n  id: ID!\n  user: User!\n  post: Post!\n  files: [File!]!\n  title: String!\n  subTitle: String!\n  location: String\n  contents: [String!]!\n  day: String\n  time: String\n  cost: String\n  schedule: String\n  homepage: String\n  phoneNumber: String\n  park: String\n  info: String\n  createdAt: String\n  updatedAt: String\n}\n\ntype Query {\n  SearchPost(term: String!): Post!\n  seePost(id: String!): Post!\n  seePosts: [Post!]!\n  seeUser(id: String!): User!\n}\n\ntype createAccountResponse {\n  user: User!\n  token: String!\n}\n"];
 /* tslint:disable */
 
 export interface Query {
@@ -95,6 +95,7 @@ export interface Comment {
 export interface Mutation {
   createCard: Card;
   addComment: Comment;
+  deleteComment: boolean;
   toggleLike: boolean;
   createPost: Post;
   createAccount: createAccountResponse;
@@ -121,6 +122,10 @@ export interface CreateCardMutationArgs {
 export interface AddCommentMutationArgs {
   text: string;
   postId: string;
+}
+
+export interface DeleteCommentMutationArgs {
+  commentId: string;
 }
 
 export interface ToggleLikeMutationArgs {

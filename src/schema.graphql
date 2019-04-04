@@ -1,6 +1,7 @@
 type Mutation {
   createCard(postId: String!, files: [String!]!, title: String!, subTitle: String!, contents: [String!]!, location: String, day: String, time: String, cost: String, schedule: String, homepage: String, phoneNumber: String, park: String, info: String): Card!
   addComment(text: String!, postId: String!): Comment!
+  deleteComment(commentId: String!): Boolean!
   toggleLike(postId: String!): Boolean!
   createPost(title: String!, subTitle: String!): Post!
   createAccount(profilePhoto: String!, name: String!, account: String!): createAccountResponse!
