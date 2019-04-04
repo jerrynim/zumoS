@@ -5,6 +5,10 @@ type Mutation {
   EditUser(profilePhoto: String, name: String): User!
 }
 
+type mutation {
+  toggleLike(postId: String!): Boolean!
+}
+
 type User {
   id: ID!
   profilePhoto: String!
