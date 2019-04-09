@@ -4,9 +4,5 @@ type createAccountResponse {
 }
 
 type Mutation {
-  createAccount(
-    profilePhoto: String!
-    name: String!
-    account: String!
-  ): createAccountResponse!
+  createAccount(name: String!): createAccountResponse!
 }

@@ -5,8 +5,10 @@ import { generateToken } from "../../../utils";
 export default {
   Mutation: {
     createAccount: async (_, args: CreateAccountMutationArgs) => {
-      const { profilePhoto, name, account } = args;
-      const user = await prisma.createUser({ profilePhoto, name, account });
+      const { name } = args;
+      const profilePhoto =
+        "http://foodbank.bradfrostweb.com/patternlab/v7/images/fpo_avatar.png";
+      const user = await prisma.createUser({ name, profilePhoto });
       return {
         user,
         token: generateToken(user.id)

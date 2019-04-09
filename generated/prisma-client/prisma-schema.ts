@@ -1784,7 +1784,6 @@ type User {
   id: ID!
   profilePhoto: String!
   name: String!
-  account: String!
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
   likes(where: LikeWhereInput, orderBy: LikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Like!]
   cards(where: CardWhereInput, orderBy: CardOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Card!]
@@ -1800,7 +1799,6 @@ type UserConnection {
 input UserCreateInput {
   profilePhoto: String!
   name: String!
-  account: String!
   posts: PostCreateManyWithoutUserInput
   likes: LikeCreateManyWithoutUserInput
   cards: CardCreateManyWithoutUserInput
@@ -1830,7 +1828,6 @@ input UserCreateOneWithoutPostsInput {
 input UserCreateWithoutCardsInput {
   profilePhoto: String!
   name: String!
-  account: String!
   posts: PostCreateManyWithoutUserInput
   likes: LikeCreateManyWithoutUserInput
   comments: CommentCreateManyWithoutUserInput
@@ -1839,7 +1836,6 @@ input UserCreateWithoutCardsInput {
 input UserCreateWithoutCommentsInput {
   profilePhoto: String!
   name: String!
-  account: String!
   posts: PostCreateManyWithoutUserInput
   likes: LikeCreateManyWithoutUserInput
   cards: CardCreateManyWithoutUserInput
@@ -1848,7 +1844,6 @@ input UserCreateWithoutCommentsInput {
 input UserCreateWithoutLikesInput {
   profilePhoto: String!
   name: String!
-  account: String!
   posts: PostCreateManyWithoutUserInput
   cards: CardCreateManyWithoutUserInput
   comments: CommentCreateManyWithoutUserInput
@@ -1857,7 +1852,6 @@ input UserCreateWithoutLikesInput {
 input UserCreateWithoutPostsInput {
   profilePhoto: String!
   name: String!
-  account: String!
   likes: LikeCreateManyWithoutUserInput
   cards: CardCreateManyWithoutUserInput
   comments: CommentCreateManyWithoutUserInput
@@ -1875,8 +1869,6 @@ enum UserOrderByInput {
   profilePhoto_DESC
   name_ASC
   name_DESC
-  account_ASC
-  account_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -1887,7 +1879,6 @@ type UserPreviousValues {
   id: ID!
   profilePhoto: String!
   name: String!
-  account: String!
 }
 
 type UserSubscriptionPayload {
@@ -1911,7 +1902,6 @@ input UserSubscriptionWhereInput {
 input UserUpdateInput {
   profilePhoto: String
   name: String
-  account: String
   posts: PostUpdateManyWithoutUserInput
   likes: LikeUpdateManyWithoutUserInput
   cards: CardUpdateManyWithoutUserInput
@@ -1921,7 +1911,6 @@ input UserUpdateInput {
 input UserUpdateManyMutationInput {
   profilePhoto: String
   name: String
-  account: String
 }
 
 input UserUpdateOneWithoutCardsInput {
@@ -1963,7 +1952,6 @@ input UserUpdateOneWithoutPostsInput {
 input UserUpdateWithoutCardsDataInput {
   profilePhoto: String
   name: String
-  account: String
   posts: PostUpdateManyWithoutUserInput
   likes: LikeUpdateManyWithoutUserInput
   comments: CommentUpdateManyWithoutUserInput
@@ -1972,7 +1960,6 @@ input UserUpdateWithoutCardsDataInput {
 input UserUpdateWithoutCommentsDataInput {
   profilePhoto: String
   name: String
-  account: String
   posts: PostUpdateManyWithoutUserInput
   likes: LikeUpdateManyWithoutUserInput
   cards: CardUpdateManyWithoutUserInput
@@ -1981,7 +1968,6 @@ input UserUpdateWithoutCommentsDataInput {
 input UserUpdateWithoutLikesDataInput {
   profilePhoto: String
   name: String
-  account: String
   posts: PostUpdateManyWithoutUserInput
   cards: CardUpdateManyWithoutUserInput
   comments: CommentUpdateManyWithoutUserInput
@@ -1990,7 +1976,6 @@ input UserUpdateWithoutLikesDataInput {
 input UserUpdateWithoutPostsDataInput {
   profilePhoto: String
   name: String
-  account: String
   likes: LikeUpdateManyWithoutUserInput
   cards: CardUpdateManyWithoutUserInput
   comments: CommentUpdateManyWithoutUserInput
@@ -2059,20 +2044,6 @@ input UserWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  account: String
-  account_not: String
-  account_in: [String!]
-  account_not_in: [String!]
-  account_lt: String
-  account_lte: String
-  account_gt: String
-  account_gte: String
-  account_contains: String
-  account_not_contains: String
-  account_starts_with: String
-  account_not_starts_with: String
-  account_ends_with: String
-  account_not_ends_with: String
   posts_every: PostWhereInput
   posts_some: PostWhereInput
   posts_none: PostWhereInput

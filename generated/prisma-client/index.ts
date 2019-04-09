@@ -394,8 +394,6 @@ export type UserOrderByInput =
   | "profilePhoto_DESC"
   | "name_ASC"
   | "name_DESC"
-  | "account_ASC"
-  | "account_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -510,20 +508,6 @@ export interface UserWhereInput {
   name_not_starts_with?: String;
   name_ends_with?: String;
   name_not_ends_with?: String;
-  account?: String;
-  account_not?: String;
-  account_in?: String[] | String;
-  account_not_in?: String[] | String;
-  account_lt?: String;
-  account_lte?: String;
-  account_gt?: String;
-  account_gte?: String;
-  account_contains?: String;
-  account_not_contains?: String;
-  account_starts_with?: String;
-  account_not_starts_with?: String;
-  account_ends_with?: String;
-  account_not_ends_with?: String;
   posts_every?: PostWhereInput;
   posts_some?: PostWhereInput;
   posts_none?: PostWhereInput;
@@ -859,7 +843,6 @@ export interface UserCreateOneWithoutCardsInput {
 export interface UserCreateWithoutCardsInput {
   profilePhoto: String;
   name: String;
-  account: String;
   posts?: PostCreateManyWithoutUserInput;
   likes?: LikeCreateManyWithoutUserInput;
   comments?: CommentCreateManyWithoutUserInput;
@@ -931,7 +914,6 @@ export interface UserCreateOneWithoutLikesInput {
 export interface UserCreateWithoutLikesInput {
   profilePhoto: String;
   name: String;
-  account: String;
   posts?: PostCreateManyWithoutUserInput;
   cards?: CardCreateManyWithoutUserInput;
   comments?: CommentCreateManyWithoutUserInput;
@@ -981,7 +963,6 @@ export interface UserCreateOneWithoutPostsInput {
 export interface UserCreateWithoutPostsInput {
   profilePhoto: String;
   name: String;
-  account: String;
   likes?: LikeCreateManyWithoutUserInput;
   cards?: CardCreateManyWithoutUserInput;
   comments?: CommentCreateManyWithoutUserInput;
@@ -1028,7 +1009,6 @@ export interface UserCreateOneWithoutCommentsInput {
 export interface UserCreateWithoutCommentsInput {
   profilePhoto: String;
   name: String;
-  account: String;
   posts?: PostCreateManyWithoutUserInput;
   likes?: LikeCreateManyWithoutUserInput;
   cards?: CardCreateManyWithoutUserInput;
@@ -1088,7 +1068,6 @@ export interface UserUpdateOneWithoutCardsInput {
 export interface UserUpdateWithoutCardsDataInput {
   profilePhoto?: String;
   name?: String;
-  account?: String;
   posts?: PostUpdateManyWithoutUserInput;
   likes?: LikeUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
@@ -1482,7 +1461,6 @@ export interface UserUpdateOneWithoutLikesInput {
 export interface UserUpdateWithoutLikesDataInput {
   profilePhoto?: String;
   name?: String;
-  account?: String;
   posts?: PostUpdateManyWithoutUserInput;
   cards?: CardUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
@@ -1558,7 +1536,6 @@ export interface UserUpdateOneWithoutPostsInput {
 export interface UserUpdateWithoutPostsDataInput {
   profilePhoto?: String;
   name?: String;
-  account?: String;
   likes?: LikeUpdateManyWithoutUserInput;
   cards?: CardUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
@@ -1646,7 +1623,6 @@ export interface UserUpdateOneWithoutCommentsInput {
 export interface UserUpdateWithoutCommentsDataInput {
   profilePhoto?: String;
   name?: String;
-  account?: String;
   posts?: PostUpdateManyWithoutUserInput;
   likes?: LikeUpdateManyWithoutUserInput;
   cards?: CardUpdateManyWithoutUserInput;
@@ -2030,7 +2006,6 @@ export interface PostUpdateManyMutationInput {
 export interface UserCreateInput {
   profilePhoto: String;
   name: String;
-  account: String;
   posts?: PostCreateManyWithoutUserInput;
   likes?: LikeCreateManyWithoutUserInput;
   cards?: CardCreateManyWithoutUserInput;
@@ -2040,7 +2015,6 @@ export interface UserCreateInput {
 export interface UserUpdateInput {
   profilePhoto?: String;
   name?: String;
-  account?: String;
   posts?: PostUpdateManyWithoutUserInput;
   likes?: LikeUpdateManyWithoutUserInput;
   cards?: CardUpdateManyWithoutUserInput;
@@ -2050,7 +2024,6 @@ export interface UserUpdateInput {
 export interface UserUpdateManyMutationInput {
   profilePhoto?: String;
   name?: String;
-  account?: String;
 }
 
 export interface CardSubscriptionWhereInput {
@@ -2203,14 +2176,12 @@ export interface User {
   id: ID_Output;
   profilePhoto: String;
   name: String;
-  account: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
   profilePhoto: () => Promise<String>;
   name: () => Promise<String>;
-  account: () => Promise<String>;
   posts: <T = FragmentableArray<Post>>(
     args?: {
       where?: PostWhereInput;
@@ -2263,7 +2234,6 @@ export interface UserSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   profilePhoto: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
-  account: () => Promise<AsyncIterator<String>>;
   posts: <T = Promise<AsyncIterator<PostSubscription>>>(
     args?: {
       where?: PostWhereInput;
@@ -3107,7 +3077,6 @@ export interface UserPreviousValues {
   id: ID_Output;
   profilePhoto: String;
   name: String;
-  account: String;
 }
 
 export interface UserPreviousValuesPromise
@@ -3116,7 +3085,6 @@ export interface UserPreviousValuesPromise
   id: () => Promise<ID_Output>;
   profilePhoto: () => Promise<String>;
   name: () => Promise<String>;
-  account: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -3125,7 +3093,6 @@ export interface UserPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   profilePhoto: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
-  account: () => Promise<AsyncIterator<String>>;
 }
 
 /*

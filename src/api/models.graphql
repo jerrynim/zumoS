@@ -2,7 +2,6 @@ type User {
   id: ID!
   profilePhoto: String!
   name: String!
-  account: String!
   posts: [Post!]!
   likes: [Like!]!
   cards: [Card!]!

@@ -4,7 +4,7 @@ type Mutation {
   deleteComment(commentId: String!): Boolean!
   toggleLike(postId: String!): Boolean!
   createPost(title: String!, subTitle: String!): Post!
-  createAccount(profilePhoto: String!, name: String!, account: String!): createAccountResponse!
+  createAccount(name: String!): createAccountResponse!
   EditUser(profilePhoto: String, name: String): User!
 }
 
@@ -12,7 +12,6 @@ type User {
   id: ID!
   profilePhoto: String!
   name: String!
-  account: String!
   posts: [Post!]!
   likes: [Like!]!
   cards: [Card!]!
